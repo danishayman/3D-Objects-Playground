@@ -1,0 +1,50 @@
+// Configure WebGL Settings
+function configWebGL() {
+  // Initialize the WebGL context
+  gl = WebGLUtils.setupWebGL(canvas);
+
+  if (!gl) {
+    alert("WebGL isn't available");
+  }
+
+  // Set the viewport and clear the color
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  gl.clearColor(1.0, 1.0, 1.0, 1.0);
+
+  // Enable hidden-surface removal
+  gl.enable(gl.DEPTH_TEST);
+
+  // Compile the vertex and fragment shaders and link to WebGL
+  program = initShaders(gl, "vertex-shader", "fragment-shader");
+  gl.useProgram(program);
+
+  // Create buffers and link them to the corresponding attribute variables in vertex and fragment shaders
+  // Buffer for positions
+  pBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, pBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, flatten(pointsArray), gl.STATIC_DRAW);
+
+  vPosition = gl.getAttribLocation(program, "vPosition");
+  gl.vertexAttribPointer(vPosition, 4, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vPosition);
+
+  // Buffer for normals
+  nBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, nBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, flatten(normalsArray), gl.STATIC_DRAW);
+
+  vNormal = gl.getAttribLocation(program, "vNormal");
+  gl.vertexAttribPointer(vNormal, 3, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vNormal);
+
+  // Get the location of the uniform variables within a compiled shader program
+  modelViewMatrixLoc = gl.getUniformLocation(program, "modelViewMatrix");
+  projectionMatrixLoc = gl.getUniformLocation(program, "projectionMatrix");
+  normalMatrixLoc = gl.getUniformLocation(program, "normalMatrix");
+}
+
+// Concatenate the corresponding shape's values
+function concatData(point, normal) {
+  pointsArray = pointsArray.concat(point);
+  normalsArray = normalsArray.concat(normal);
+}
