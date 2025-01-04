@@ -1,192 +1,184 @@
 body {
-	margin: 0;
-	padding: 0;
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-  
-	--s: 100px;
-	--c1: #ffcfef;
-	--c2: #2a3335;
-  
-	--_g: var(--c2) 4% 14%, var(--c1) 14% 24%, var(--c2) 22% 34%,
-	  var(--c1) 34% 44%, var(--c2) 44% 56%, var(--c1) 56% 66%, var(--c2) 66% 76%,
-	  var(--c1) 76% 86%, var(--c2) 86% 96%;
-	background: radial-gradient(
-		100% 100% at 100% 0,
-		var(--c1) 4%,
-		var(--_g),
-		#0008 96%,
-		#0000
-	  ),
-	  radial-gradient(
-		  100% 100% at 0 100%,
-		  #0000,
-		  #0008 4%,
-		  var(--_g),
-		  var(--c1) 96%
-		)
-		var(--c1);
-	background-size: var(--s) var(--s);
-  }
-  
-  .canvas {
-	background-color: #ffffff;
-	line-height: 10px;
-	color: #009688;
-	padding: 25px;
-	box-shadow: inset #009688 0 0 0 5px, inset #059c8e 0 0 0 1px,
-	  inset #0cab9c 0 0 0 10px, inset #1fbdae 0 0 0 11px, inset #8ce9ff 0 0 0 16px,
-	  inset #48e4d6 0 0 0 17px, inset #e5f9f7 0 0 0 21px, inset #bfecf7 0 0 0 22px;
-	text-shadow: 3px 3px 1px #bfecf7;
-  }
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.horizontal-align
-{
-	display: flex;
-	flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  --s: 100px;
+  --c1: #ffcfef;
+  --c2: #2a3335;
+
+  --_g: var(--c2) 4% 14%, var(--c1) 14% 24%, var(--c2) 22% 34%,
+    var(--c1) 34% 44%, var(--c2) 44% 56%, var(--c1) 56% 66%, var(--c2) 66% 76%,
+    var(--c1) 76% 86%, var(--c2) 86% 96%;
+  background: radial-gradient(
+      100% 100% at 100% 0,
+      var(--c1) 4%,
+      var(--_g),
+      #0008 96%,
+      #0000
+    ),
+    radial-gradient(
+        100% 100% at 0 100%,
+        #0000,
+        #0008 4%,
+        var(--_g),
+        var(--c1) 96%
+      )
+      var(--c1);
+  background-size: var(--s) var(--s);
 }
 
-.vertical-align
-{
-	display: flex;
-	flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.canvas {
+  background-color: #ffffff;
+  line-height: 10px;
+  color: #009688;
+  padding: 25px;
+  box-shadow: inset #009688 0 0 0 5px, inset #059c8e 0 0 0 1px,
+    inset #0cab9c 0 0 0 10px, inset #1fbdae 0 0 0 11px, inset #8ce9ff 0 0 0 16px,
+    inset #48e4d6 0 0 0 17px, inset #e5f9f7 0 0 0 21px, inset #bfecf7 0 0 0 22px;
+  text-shadow: 3px 3px 1px #bfecf7;
 }
 
-.panel
-{
-	margin-left: 10px;
-	width: 400px;
-	height: 720px;
-	border: 10px solid #4a4e69;
-	border-radius: 10px;
-	background-color: #022639;
+.horizontal-align {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.param-panel
-{
+.vertical-align {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel {
+  margin-left: 10px;
+  width: 400px;
+  height: 720px;
+  border: 10px solid #009688;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.param-panel {
+  width: 270px;
+  margin: 5px 0 5px 0;
+}
+
+.mg-top-bottom {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.slider {
+  font-weight: bold;
+  font-size: large;
+  color: #ffffff;
+}
+
+.slider .slide {
+  width: 120px;
+  padding-top: 10px;
+}
+
+.checkText {
+  width: 150px;
+  height: 20px;
+  font-weight: bold;
+  font-size: large;
+  color: #222;
+}
+
+.checkRadio {
+  width: 20px;
+  height: 20px;
+  margin-right: 22px;
+}
+
+.textbox {
+  margin-left: 15px;
+  width: 55px;
+  height: 55px;
+  background: #0077b6;
+  border: 5px solid #00b4d8;
+  border-radius: 10px;
+}
+
+.textbox2 {
+  margin-left: 15px;
+  width: 55px;
+  height: 40px;
+  background: #0077b6;
+  border: 5px solid #00b4d8;
+  border-radius: 10px;
+}
+
+.textbox p {
+  position: relative;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 0.25;
+}
+
+.textbox2 p {
+  position: relative;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 0.1;
+}
+
+.anim-btn {
+	margin: 10px 0px 5px 0px;
 	width: 270px;
-	margin: 5px 0 5px 0;
-}
-
-.mg-top-bottom
-{
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-.slider
-{
-	font-weight: bold;
-	font-size: large;
-	color: #ffffff;
-}
-
-.slider .slide
-{
-	width: 120px;
-	padding-top: 10px;
-}
-
-.checkText
-{
-	width: 150px;
-	height: 20px;
-	font-weight: bold;
-	font-size: large;
-	color: #ffffff;
-}
-
-.checkRadio
-{
-	width: 20px;
-	height: 20px;
-	margin-right: 22px;
-}
-
-.textbox
-{
-	margin-left: 15px;
-	width: 55px;
-	height: 55px;
-	background: #0077b6;
-	border: 5px solid #00b4d8;
+	height: 70px;
+	background: #0a97b0;
+	border: 5px solid #2a3335;
 	border-radius: 10px;
-}
-
-.textbox2
-{
-	margin-left: 15px;
-	width: 55px;
-	height: 40px;
-	background: #0077b6;
-	border: 5px solid #00b4d8;
-	border-radius: 10px;
-}
-
-.textbox p
-{
-	position: relative;
-	color: #ffffff;
-	text-align: center;
-	font-weight: bold;
-	font-size: 25px;
-	line-height: 0.25;
-}
-
-.textbox2 p
-{
-	position: relative;
 	color: #ffffff;
 	text-align: center;
 	font-weight: bold;
 	font-size: 20px;
-	line-height: 0.1;
+	outline: none;
+	transition: all 0.3s ease;
 }
 
-.anim-btn
-{
-	margin: 15px 0px 5px 0px;
-	width: 270px;
-	height: 70px;
-	background: #34a0a4;
-	border: 5px solid #99d98c;
-	border-radius: 10px;
-	color: #ffffff;
-	text-align: center;
-	font-weight: bold;
-	font-size: 24px;
-	outline : none;
+.anim-btn:hover {
+	transform: scale(1.03);
 }
 
-.anim-btn:hover
-{
-	animation: bounce 1s;
+.anim-btn:active {
+  background-color: #21ff94;
+  box-shadow: 0 2px #666666;
+  transform: translateY(2px);
 }
 
-.anim-btn:active
-{
-  background-color 	: #21ff94;
-  box-shadow 		: 0 2px #666666;
-  transform 		: translateY(2px);
+.anim-btn:disabled {
+  animation: none;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
-.anim-btn:disabled
-{
-    animation: none;
-	pointer-events: none;
-	opacity: 0.5;
-}
-
-@keyframes bounce 
-{
-	0%, 20%, 60%, 100%	{transform: translateY(0);}
-	40% 				{transform: translateY(-10px);}
-	80% 				{transform: translateY(-5px);}
+@keyframes bounce {
+  0%,
+  20%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
 }
