@@ -1,21 +1,47 @@
-body
-{
+body {
+	margin: 0;
+	padding: 0;
 	width: 100vw;
 	height: 100vh;
-	padding: 0;
-	margin: 0;
-	text-decoration: none;
-    display: flex;
-	flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.canvas
-{
-	border: 10px solid #4a4e69;
-	border-radius: 10px;
-}
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  
+	--s: 100px;
+	--c1: #ffcfef;
+	--c2: #2a3335;
+  
+	--_g: var(--c2) 4% 14%, var(--c1) 14% 24%, var(--c2) 22% 34%,
+	  var(--c1) 34% 44%, var(--c2) 44% 56%, var(--c1) 56% 66%, var(--c2) 66% 76%,
+	  var(--c1) 76% 86%, var(--c2) 86% 96%;
+	background: radial-gradient(
+		100% 100% at 100% 0,
+		var(--c1) 4%,
+		var(--_g),
+		#0008 96%,
+		#0000
+	  ),
+	  radial-gradient(
+		  100% 100% at 0 100%,
+		  #0000,
+		  #0008 4%,
+		  var(--_g),
+		  var(--c1) 96%
+		)
+		var(--c1);
+	background-size: var(--s) var(--s);
+  }
+  
+  .canvas {
+	background-color: #ffffff;
+	line-height: 10px;
+	color: #009688;
+	padding: 25px;
+	box-shadow: inset #009688 0 0 0 5px, inset #059c8e 0 0 0 1px,
+	  inset #0cab9c 0 0 0 10px, inset #1fbdae 0 0 0 11px, inset #8ce9ff 0 0 0 16px,
+	  inset #48e4d6 0 0 0 17px, inset #e5f9f7 0 0 0 21px, inset #bfecf7 0 0 0 22px;
+	text-shadow: 3px 3px 1px #bfecf7;
+  }
 
 .horizontal-align
 {
