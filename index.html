@@ -372,7 +372,7 @@
       <!-- Material Controls -->
       <div class="param-panel vertical-align mg-top-bottom">
         <div class="checkText">Object Material Properties</div>
-        
+
         <!-- Object Selection -->
         <select id="object-select" class="material-select">
           <option value="cylinder">Cylinder</option>
@@ -384,15 +384,15 @@
         <div class="material-colors vertical-align">
           <div class="color-control horizontal-align">
             <label>Material Ambient:</label>
-            <input type="color" id="material-ambient" value="#808080"/>
+            <input type="color" id="material-ambient" value="#808080" />
           </div>
           <div class="color-control horizontal-align">
             <label>Material Diffuse:</label>
-            <input type="color" id="material-diffuse" value="#808080"/>
+            <input type="color" id="material-diffuse" value="#808080" />
           </div>
           <div class="color-control horizontal-align">
             <label>Material Specular:</label>
-            <input type="color" id="material-specular" value="#808080"/>
+            <input type="color" id="material-specular" value="#808080" />
           </div>
         </div>
 
@@ -400,17 +400,38 @@
         <div class="reflection-controls vertical-align">
           <div class="slider-control horizontal-align">
             <label>Ambient Coefficient:</label>
-            <input type="range" id="ambient-coef" min="0" max="1" step="0.1" value="0.2"/>
+            <input
+              type="range"
+              id="ambient-coef"
+              min="0"
+              max="1"
+              step="0.1"
+              value="0.2"
+            />
             <span id="ambient-coef-value">0.2</span>
           </div>
           <div class="slider-control horizontal-align">
             <label>Diffuse Coefficient:</label>
-            <input type="range" id="diffuse-coef" min="0" max="1" step="0.1" value="0.6"/>
+            <input
+              type="range"
+              id="diffuse-coef"
+              min="0"
+              max="1"
+              step="0.1"
+              value="0.6"
+            />
             <span id="diffuse-coef-value">0.6</span>
           </div>
           <div class="slider-control horizontal-align">
             <label>Specular Coefficient:</label>
-            <input type="range" id="specular-coef" min="0" max="1" step="0.1" value="0.3"/>
+            <input
+              type="range"
+              id="specular-coef"
+              min="0"
+              max="1"
+              step="0.1"
+              value="0.3"
+            />
             <span id="specular-coef-value">0.3</span>
           </div>
         </div>
@@ -418,7 +439,7 @@
         <!-- Shininess Control -->
         <div class="slider-control horizontal-align">
           <label>Shininess:</label>
-          <input type="range" id="shininess" min="1" max="100" value="30"/>
+          <input type="range" id="shininess" min="1" max="100" value="30" />
           <span id="shininess-value">30</span>
         </div>
 
@@ -434,6 +455,118 @@
         </div>
       </div>
 
+      <!-- ======================================== VIEWING & SHADING CONTROLS ======================================== -->
+      <!-- Camera Controls -->
+      <div class="param-panel vertical-align mg-top-bottom">
+        <div class="checkText">Camera Controls</div>
+
+        <!-- Camera Position -->
+        <div class="camera-position vertical-align">
+          <div class="slider-control horizontal-align">
+            <label>Eye X:</label>
+            <input
+              type="range"
+              id="eye-x"
+              min="-10"
+              max="10"
+              value="0"
+              step="0.1"
+            />
+            <span id="eye-x-value">0.0</span>
+          </div>
+          <div class="slider-control horizontal-align">
+            <label>Eye Y:</label>
+            <input
+              type="range"
+              id="eye-y"
+              min="-10"
+              max="10"
+              value="0"
+              step="0.1"
+            />
+            <span id="eye-y-value">0.0</span>
+          </div>
+          <div class="slider-control horizontal-align">
+            <label>Eye Z:</label>
+            <input
+              type="range"
+              id="eye-z"
+              min="-10"
+              max="10"
+              value="5"
+              step="0.1"
+            />
+            <span id="eye-z-value">5.0</span>
+          </div>
+        </div>
+
+        <!-- Look At Point -->
+        <div class="look-at vertical-align">
+          <div class="slider-control horizontal-align">
+            <label>Look At X:</label>
+            <input
+              type="range"
+              id="at-x"
+              min="-10"
+              max="10"
+              value="0"
+              step="0.1"
+            />
+            <span id="at-x-value">0.0</span>
+          </div>
+          <div class="slider-control horizontal-align">
+            <label>Look At Y:</label>
+            <input
+              type="range"
+              id="at-y"
+              min="-10"
+              max="10"
+              value="0"
+              step="0.1"
+            />
+            <span id="at-y-value">0.0</span>
+          </div>
+          <div class="slider-control horizontal-align">
+            <label>Look At Z:</label>
+            <input
+              type="range"
+              id="at-z"
+              min="-10"
+              max="10"
+              value="0"
+              step="0.1"
+            />
+            <span id="at-z-value">0.0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shading Controls -->
+      <div class="param-panel vertical-align mg-top-bottom">
+        <div class="checkText">Shading Controls</div>
+
+        <!-- Shading Type -->
+        <div class="shading-type horizontal-align">
+          <label>Shading Mode:</label>
+          <select id="shading-mode">
+            <option value="phong">Phong</option>
+            <option value="flat">Flat</option>
+            <option value="cartoon">Cartoon</option>
+            <option value="sketch">Sketch</option>
+            <option value="painting">Painting</option>
+          </select>
+        </div>
+
+        <!-- Shader Stage -->
+        <div class="shader-stage horizontal-align">
+          <label>Shader Stage:</label>
+          <select id="shader-stage">
+            <option value="vertex">Vertex Shader</option>
+            <option value="fragment">Fragment Shader</option>
+            <option value="both">Both Stages</option>
+          </select>
+        </div>
+      </div>
     </div>
   </body>
 </html>
