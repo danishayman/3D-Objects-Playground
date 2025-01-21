@@ -81,10 +81,7 @@ function drawSphere() {
   nMatrix = normalMatrix(modelViewMatrix);
   gl.uniformMatrix3fv(normalMatrixLoc, false, nMatrix);
 
-  // Draw starting from after cylinder and cube vertices
-  const startIndex = cylinderV + cubeV;
-  const count = totalV - startIndex; // Calculate how many vertices remain to draw
-  gl.drawArrays(gl.TRIANGLES, startIndex, count);
+  gl.drawArrays(gl.TRIANGLES, cylinderV + cubeV, sphereV);
 }
 
 /*-----------------------------------------------------------------------------------*/
