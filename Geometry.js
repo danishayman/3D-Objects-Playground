@@ -86,15 +86,6 @@ function drawSphere() {
   const count = totalV - startIndex; // Calculate how many vertices remain to draw
   gl.drawArrays(gl.TRIANGLES, startIndex, count);
 }
-/*-----------------------------------------------------------------------------------*
-
-
-
-
-
-
-
-
 
 /*-----------------------------------------------------------------------------------*/
 // Sphere
