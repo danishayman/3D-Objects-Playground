@@ -44,18 +44,7 @@ var pointsArray = [],
   cubeV,
   sphereV,
   totalV;
+  
+  var lightSphereObj;  // Sphere object for the light
+  var lightSphereV;
 
-// Variables for lighting control
-var ambientProduct, diffuseProduct, specularProduct;
-var ambient = 0.5,
-  diffuse = 0.5,
-  specular = 0.5,
-  shininess = 60;
-var lightPos = vec4(1.0, 1.0, 1.0, 0.0);
-var lightAmbient = vec4(ambient, ambient, ambient, 1.0);
-var lightDiffuse = vec4(diffuse, diffuse, diffuse, 1.0);
-var lightSpecular = vec4(specular, specular, specular, 1.0);
-
-var materialAmbient = vec4(0.5, 0.5, 1.0, 1.0);
-var materialDiffuse = vec4(0.0, 0.9, 1.0, 1.0);
-var materialSpecular = vec4(1.0, 1.0, 1.0, 1.0);

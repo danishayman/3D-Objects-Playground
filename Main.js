@@ -16,7 +16,7 @@ window.onload = function init() {
   cubeObj.Scale(1, 1, 1);
   concatData(cubeObj.Point, cubeObj.Normal);
 
-  sphereObj = sphere(3);
+  sphereObj = sphere(5);
   sphereObj.Rotate(45, [1, 1, 0]);
   sphereObj.Scale(0.75, 0.75, 0.75);
   concatData(sphereObj.Point, sphereObj.Normal);
@@ -30,6 +30,24 @@ window.onload = function init() {
   getUIElement();
   configWebGL();
   render();
+  // Initialize light controls
+  initLightControls();
+    
+  // Initial updates
+  updateLightProducts();
+  updateLightSource();
+
+
+
+  // Create a small sphere for the light source
+  lightSphereObj = sphere(5);
+  lightSphereObj.Scale(1, 1, 1);  // make it small
+  // Store its vertices separately
+  lightSphereV = lightSphereObj.Point.length;
+  concatData(lightSphereObj.Point, lightSphereObj.Normal);
+
+
+
 };
 
 // Retrieve all elements from HTML and store in the corresponding variables
@@ -150,6 +168,7 @@ function animUpdate() {
   drawCylinder();
   drawCube();
   drawSphere();
+  drawLightSource();
 
   // Schedule the next frame for a looped animation (60fps)
   animFrame = window.requestAnimationFrame(animUpdate);

@@ -64,6 +64,32 @@ body {
   border: 10px solid #009688;
   border-radius: 10px;
   background-color: #fff;
+  overflow-y: auto;
+  /* Add padding to prevent content from touching borders */
+  padding: 20px;
+  /* Critical addition: change the align-items property */
+  align-items: flex-start; /* This prevents content from being centered vertically */
+  /* Remove justify-content: center to prevent centering */
+  justify-content: flex-start;
+}
+
+/* Add custom scrollbar styling for better appearance*/
+.panel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.panel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.panel::-webkit-scrollbar-thumb {
+  background: #009688;
+  border-radius: 5px;
+}
+
+.panel::-webkit-scrollbar-thumb:hover {
+  background: #00796b;
 }
 
 .param-panel {

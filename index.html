@@ -15,6 +15,7 @@
     <script type="text/javascript" src="Common/MV.js"></script>
     <script type="text/javascript" src="Variables.js"></script>
     <script type="text/javascript" src="Main.js"></script>
+    <script type="text/javascript" src="Lighting.js"></script>
     <script type="text/javascript" src="ConfigureWebGL.js"></script>
     <script type="text/javascript" src="Geometry.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -205,12 +206,167 @@
       </div>
 
       <!-- Cube animation button -->
-      <input
-        id="cube-btn"
-        class="anim-btn"
-        type="button"
-        value="Toggle Cube"
-      />
+      <input id="cube-btn" class="anim-btn" type="button" value="Toggle Cube" />
+
+      <!-- ======================================== LIGHT SOURCE SELECTION ======================================== -->
+      <div class="param-panel horizontal-align mg-top-bottom">
+        <div class="checkText">Select Light Source:</div>
+        <select id="light-source" class="light-select">
+          <option value="point">Point Light</option>
+          <option value="spot">Spot Light</option>
+        </select>
+      </div>
+
+      <!-- Light Source Toggle -->
+      <div class="param-panel horizontal-align mg-top-bottom">
+        <div class="checkText">Light Source</div>
+        <input type="checkbox" id="light-toggle" class="checkRadio" checked />
+      </div>
+
+      <!-- ======================================== LIGHT COLOR CONTROLS ======================================== -->
+      <div class="param-panel vertical-align mg-top-bottom">
+        <div class="checkText">Light Colors</div>
+
+        <!-- Ambient Color -->
+        <div class="color-control horizontal-align">
+          <label>Ambient:</label>
+          <input type="color" id="ambient-color" value="#ffffff" />
+        </div>
+
+        <!-- Diffuse Color -->
+        <div class="color-control horizontal-align">
+          <label>Diffuse:</label>
+          <input type="color" id="diffuse-color" value="#ffffff" />
+        </div>
+
+        <!-- Specular Color -->
+        <div class="color-control horizontal-align">
+          <label>Specular:</label>
+          <input type="color" id="specular-color" value="#ffffff" />
+        </div>
+      </div>
+
+      <!-- ======================================== LIGHT POSITION CONTROLS ======================================== -->
+      <div class="param-panel vertical-align mg-top-bottom">
+        <div class="checkText">Light Position</div>
+
+        <!-- X Position -->
+        <div class="position-control horizontal-align">
+          <label>X Position:</label>
+          <input
+            type="range"
+            id="light-x"
+            min="-10"
+            max="10"
+            value="0"
+            step="0.1"
+          />
+          <span id="light-x-value">0.0</span>
+        </div>
+
+        <!-- Y Position -->
+        <div class="position-control horizontal-align">
+          <label>Y Position:</label>
+          <input
+            type="range"
+            id="light-y"
+            min="-10"
+            max="10"
+            value="0"
+            step="0.1"
+          />
+          <span id="light-y-value">0.0</span>
+        </div>
+
+        <!-- Z Position -->
+        <div class="position-control horizontal-align">
+          <label>Z Position:</label>
+          <input
+            type="range"
+            id="light-z"
+            min="-10"
+            max="10"
+            value="0"
+            step="0.1"
+          />
+          <span id="light-z-value">0.0</span>
+        </div>
+      </div>
+
+      <!-- ======================================== LIGHT TYPE CONTROLS ======================================== -->
+      <div class="param-panel horizontal-align mg-top-bottom">
+        <div class="checkText">Light Type</div>
+        <select id="point-light-type" class="light-select">
+          <option value="positional">Positional</option>
+          <option value="directional">Directional</option>
+        </select>
+      </div>
+
+      <!-- ======================================== SPOTLIGHT CONTROLS ======================================== -->
+      <div class="param-panel vertical-align mg-top-bottom">
+        <div class="checkText">Spotlight Settings</div>
+
+        <!-- Cutoff Angle -->
+        <div class="spotlight-control horizontal-align">
+          <label>Cutoff Angle:</label>
+          <input
+            type="range"
+            id="spotlight-cutoff"
+            min="0"
+            max="90"
+            value="45"
+            step="1"
+          />
+          <span id="spotlight-cutoff-value">45°</span>
+        </div>
+
+        <!-- Spotlight Direction -->
+        <div class="spotlight-direction vertical-align">
+          <div class="checkText">Direction</div>
+
+          <!-- Direction X -->
+          <div class="direction-control horizontal-align">
+            <label>X:</label>
+            <input
+              type="range"
+              id="spotlight-dir-x"
+              min="-1"
+              max="1"
+              value="0"
+              step="0.1"
+            />
+            <span id="spotlight-dir-x-value">0.0</span>
+          </div>
+
+          <!-- Direction Y -->
+          <div class="direction-control horizontal-align">
+            <label>Y:</label>
+            <input
+              type="range"
+              id="spotlight-dir-y"
+              min="-1"
+              max="1"
+              value="-1"
+              step="0.1"
+            />
+            <span id="spotlight-dir-y-value">-1.0</span>
+          </div>
+
+          <!-- Direction Z -->
+          <div class="direction-control horizontal-align">
+            <label>Z:</label>
+            <input
+              type="range"
+              id="spotlight-dir-z"
+              min="-1"
+              max="1"
+              value="0"
+              step="0.1"
+            />
+            <span id="spotlight-dir-z-value">0.0</span>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
