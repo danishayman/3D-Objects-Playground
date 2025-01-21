@@ -58,8 +58,11 @@ function initLightControls() {
 function updateLightSource() {
     // Show/hide relevant controls based on light source
     const isSpotlight = lightSourceSelect.value === "spot";
-    document.querySelector(".spotlight-direction").style.display = isSpotlight ? "block" : "none";
-    document.querySelector(".spotlight-control").style.display = isSpotlight ? "block" : "none";
+    const spotlightElements = document.querySelectorAll(".spotlight-direction, .spotlight-control");
+    spotlightElements.forEach(elem => {
+        elem.style.pointerEvents = isSpotlight ? "auto" : "none";
+        elem.style.opacity = isSpotlight ? "1" : "0.5";
+    });
     gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
     
 }
@@ -130,3 +133,38 @@ function updateLightProducts() {
     gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
     gl.uniform1f(gl.getUniformLocation(program, "shininess"), shininess);
 }
+
+
+
+
+function drawLightSource() {
+    // Only draw if it's a point light (w component is 1.0)
+    if (lightPos[3] === 1.0) {
+        // Save current modelView matrix
+        const currentModelView = modelView;
+        
+        // Create small sphere at light position
+        modelView = mult(modelView, translate(lightPos[0], lightPos[1], lightPos[2]));
+        modelView = mult(modelView, scale(0.1, 0.1, 0.1));
+        
+        // Update modelView matrix in shader
+        gl.uniformMatrix4fv(gl.getUniformLocation(program, "modelViewMatrix"), false, flatten(modelView));
+        
+        // Use bright emissive material for light source
+        const lightColor = vec4(1.0, 1.0, 1.0, 1.0);
+        gl.uniform4fv(gl.getUniformLocation(program, "ambientProduct"), flatten(lightColor));
+        gl.uniform4fv(gl.getUniformLocation(program, "diffuseProduct"), flatten(lightColor));
+        gl.uniform4fv(gl.getUniformLocation(program, "specularProduct"), flatten(lightColor));
+        
+        // Draw sphere
+        drawSphere();
+        
+        // Restore original modelView and materials
+        modelView = currentModelView;
+        gl.uniformMatrix4fv(gl.getUniformLocation(program, "modelViewMatrix"), false, flatten(modelView));
+        updateLightProducts();
+    }
+}
+
+
+

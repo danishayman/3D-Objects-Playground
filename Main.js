@@ -156,6 +156,7 @@ function animUpdate() {
   drawCylinder();
   drawCube();
   drawSphere();
+  drawLightSource();
 
   // Schedule the next frame for a looped animation (60fps)
   animFrame = window.requestAnimationFrame(animUpdate);

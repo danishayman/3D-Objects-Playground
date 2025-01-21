@@ -210,10 +210,85 @@
 
       <!-- ======================================== LIGHT SOURCE SELECTION ======================================== -->
       <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Select Light Source:</div>
+        <div class="checkText">Light Source:</div>
         <select id="light-source" class="light-select">
           <option value="point">Point Light</option>
           <option value="spot">Spot Light</option>
+        </select>
+      </div>
+
+      <!-- ======================================== SPOTLIGHT CONTROLS ======================================== -->
+      <div class="param-panel vertical-align mg-top-bottom">
+        <div class="checkText">Spotlight Settings</div>
+
+        <!-- Cutoff Angle -->
+        <div class="spotlight-control horizontal-align">
+          <label>Cutoff Angle:</label>
+          <input
+            type="range"
+            id="spotlight-cutoff"
+            min="0"
+            max="90"
+            value="45"
+            step="1"
+          />
+          <span id="spotlight-cutoff-value">45°</span>
+        </div>
+
+        <!-- Spotlight Direction -->
+        <div class="spotlight-direction vertical-align">
+          <div class="checkText">Direction</div>
+
+          <!-- Direction X -->
+          <div class="direction-control horizontal-align">
+            <label>X:</label>
+            <input
+              type="range"
+              id="spotlight-dir-x"
+              min="-1"
+              max="1"
+              value="0"
+              step="0.1"
+            />
+            <span id="spotlight-dir-x-value">0.0</span>
+          </div>
+
+          <!-- Direction Y -->
+          <div class="direction-control horizontal-align">
+            <label>Y:</label>
+            <input
+              type="range"
+              id="spotlight-dir-y"
+              min="-1"
+              max="1"
+              value="-1"
+              step="0.1"
+            />
+            <span id="spotlight-dir-y-value">-1.0</span>
+          </div>
+
+          <!-- Direction Z -->
+          <div class="direction-control horizontal-align">
+            <label>Z:</label>
+            <input
+              type="range"
+              id="spotlight-dir-z"
+              min="-1"
+              max="1"
+              value="0"
+              step="0.1"
+            />
+            <span id="spotlight-dir-z-value">0.0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================== LIGHT TYPE CONTROLS ======================================== -->
+      <div class="param-panel horizontal-align mg-top-bottom">
+        <div class="checkText">Light Type</div>
+        <select id="point-light-type" class="light-select">
+          <option value="positional">Positional</option>
+          <option value="directional">Directional</option>
         </select>
       </div>
 
@@ -293,80 +368,72 @@
         </div>
       </div>
 
-      <!-- ======================================== LIGHT TYPE CONTROLS ======================================== -->
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Light Type</div>
-        <select id="point-light-type" class="light-select">
-          <option value="positional">Positional</option>
-          <option value="directional">Directional</option>
-        </select>
-      </div>
-
-      <!-- ======================================== SPOTLIGHT CONTROLS ======================================== -->
+      <!-- ======================================== MATERIAL CONTROLS ======================================== -->
+      <!-- Material Controls -->
       <div class="param-panel vertical-align mg-top-bottom">
-        <div class="checkText">Spotlight Settings</div>
+        <div class="checkText">Object Material Properties</div>
+        
+        <!-- Object Selection -->
+        <select id="object-select" class="material-select">
+          <option value="cylinder">Cylinder</option>
+          <option value="sphere">Sphere</option>
+          <option value="cube">Cube</option>
+        </select>
 
-        <!-- Cutoff Angle -->
-        <div class="spotlight-control horizontal-align">
-          <label>Cutoff Angle:</label>
-          <input
-            type="range"
-            id="spotlight-cutoff"
-            min="0"
-            max="90"
-            value="45"
-            step="1"
-          />
-          <span id="spotlight-cutoff-value">45°</span>
+        <!-- Material Colors -->
+        <div class="material-colors vertical-align">
+          <div class="color-control horizontal-align">
+            <label>Material Ambient:</label>
+            <input type="color" id="material-ambient" value="#808080"/>
+          </div>
+          <div class="color-control horizontal-align">
+            <label>Material Diffuse:</label>
+            <input type="color" id="material-diffuse" value="#808080"/>
+          </div>
+          <div class="color-control horizontal-align">
+            <label>Material Specular:</label>
+            <input type="color" id="material-specular" value="#808080"/>
+          </div>
         </div>
 
-        <!-- Spotlight Direction -->
-        <div class="spotlight-direction vertical-align">
-          <div class="checkText">Direction</div>
-
-          <!-- Direction X -->
-          <div class="direction-control horizontal-align">
-            <label>X:</label>
-            <input
-              type="range"
-              id="spotlight-dir-x"
-              min="-1"
-              max="1"
-              value="0"
-              step="0.1"
-            />
-            <span id="spotlight-dir-x-value">0.0</span>
+        <!-- Reflection Coefficients -->
+        <div class="reflection-controls vertical-align">
+          <div class="slider-control horizontal-align">
+            <label>Ambient Coefficient:</label>
+            <input type="range" id="ambient-coef" min="0" max="1" step="0.1" value="0.2"/>
+            <span id="ambient-coef-value">0.2</span>
           </div>
-
-          <!-- Direction Y -->
-          <div class="direction-control horizontal-align">
-            <label>Y:</label>
-            <input
-              type="range"
-              id="spotlight-dir-y"
-              min="-1"
-              max="1"
-              value="-1"
-              step="0.1"
-            />
-            <span id="spotlight-dir-y-value">-1.0</span>
+          <div class="slider-control horizontal-align">
+            <label>Diffuse Coefficient:</label>
+            <input type="range" id="diffuse-coef" min="0" max="1" step="0.1" value="0.6"/>
+            <span id="diffuse-coef-value">0.6</span>
           </div>
-
-          <!-- Direction Z -->
-          <div class="direction-control horizontal-align">
-            <label>Z:</label>
-            <input
-              type="range"
-              id="spotlight-dir-z"
-              min="-1"
-              max="1"
-              value="0"
-              step="0.1"
-            />
-            <span id="spotlight-dir-z-value">0.0</span>
+          <div class="slider-control horizontal-align">
+            <label>Specular Coefficient:</label>
+            <input type="range" id="specular-coef" min="0" max="1" step="0.1" value="0.3"/>
+            <span id="specular-coef-value">0.3</span>
           </div>
+        </div>
+
+        <!-- Shininess Control -->
+        <div class="slider-control horizontal-align">
+          <label>Shininess:</label>
+          <input type="range" id="shininess" min="1" max="100" value="30"/>
+          <span id="shininess-value">30</span>
+        </div>
+
+        <!-- Texture Control -->
+        <div class="texture-control vertical-align">
+          <label>Texture:</label>
+          <select id="texture-select">
+            <option value="none">None</option>
+            <option value="wood">Wood</option>
+            <option value="metal">Metal</option>
+            <option value="marble">Marble</option>
+          </select>
         </div>
       </div>
+
     </div>
   </body>
 </html>
