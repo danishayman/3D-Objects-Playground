@@ -36,18 +36,6 @@ window.onload = function init() {
   // Initial updates
   updateLightProducts();
   updateLightSource();
-
-
-
-  // Create a small sphere for the light source
-  lightSphereObj = sphere(5);
-  lightSphereObj.Scale(1, 1, 1);  // make it small
-  // Store its vertices separately
-  lightSphereV = lightSphereObj.Point.length;
-  concatData(lightSphereObj.Point, lightSphereObj.Normal);
-
-
-
 };
 
 // Retrieve all elements from HTML and store in the corresponding variables
@@ -168,7 +156,6 @@ function animUpdate() {
   drawCylinder();
   drawCube();
   drawSphere();
-  drawLightSource();
 
   // Schedule the next frame for a looped animation (60fps)
   animFrame = window.requestAnimationFrame(animUpdate);
