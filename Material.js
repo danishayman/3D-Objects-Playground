@@ -15,30 +15,30 @@ var cylinderMaterial = {
     ambient: vec4(0.5, 0.5, 1.0, 1.0),
     diffuse: vec4(0.0, 0.9, 1.0, 1.0),
     specular: vec4(1.0, 1.0, 1.0, 1.0),
-    ambientCoef: 0.2,
-    diffuseCoef: 0.6,
-    specularCoef: 0.3,
-    shininess: 60
+    ambientCoef: 1.0,
+    diffuseCoef: 1.0,
+    specularCoef: 1.0,
+    shininess: 50
 };
 
 var cubeMaterial = {
     ambient: vec4(1.0, 0.5, 0.5, 1.0),
     diffuse: vec4(0.9, 0.0, 0.0, 1.0),
     specular: vec4(1.0, 1.0, 1.0, 1.0),
-    ambientCoef: 0.2,
-    diffuseCoef: 0.6,
-    specularCoef: 0.3,
-    shininess: 60
+    ambientCoef: 1.0,
+    diffuseCoef: 1.0,
+    specularCoef: 1.0,
+    shininess: 50
 };
 
 var teapotMaterial = {
     ambient: vec4(0.5, 1.0, 0.5, 1.0),
     diffuse: vec4(0.0, 1.0, 0.0, 1.0),
     specular: vec4(1.0, 1.0, 1.0, 1.0),
-    ambientCoef: 0.2,
-    diffuseCoef: 0.6,
-    specularCoef: 0.3,
-    shininess: 60
+    ambientCoef: 1.0,
+    diffuseCoef: 1.0,
+    specularCoef: 1.0,
+    shininess: 50
 };
 
 function initMaterialControls() {
@@ -65,7 +65,7 @@ function initMaterialControls() {
     ambientCoef.addEventListener('input', updateMaterialCoefficients);
     diffuseCoef.addEventListener('input', updateMaterialCoefficients);
     specularCoef.addEventListener('input', updateMaterialCoefficients);
-    shininessSlider.addEventListener('input', updateMaterialCoefficients);
+    shininessSlider.addEventListener('input', updateShininess);
 }
 
 function updateMaterialColorPickers() {
@@ -191,4 +191,19 @@ function setMaterialUniforms(material) {
     gl.uniform4fv(diffuseProductLoc, flatten(diffuseProduct));
     gl.uniform4fv(specularProductLoc, flatten(specularProduct));
     gl.uniform1f(shininessLoc, material.shininess);
+}
+
+
+function updateShininess() {
+    const objectSelect = document.getElementById('object-select');
+    let currentMaterial;
+    switch(objectSelect.value) {
+        case 'cylinder': currentMaterial = cylinderMaterial; break;
+        case 'cube': currentMaterial = cubeMaterial; break;
+        case 'teapot': currentMaterial = teapotMaterial; break;
+    }
+    
+    // Use the GLOBAL shininessSlider reference
+    currentMaterial.shininess = parseInt(shininessSlider.value);
+    document.getElementById('shininess-value').textContent = shininessSlider.value;
 }
