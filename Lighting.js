@@ -192,7 +192,7 @@ function drawLightSource() {
 
     // Create small sphere at light position
     modelViewMatrix = mult(
-        modelViewMatrix,
+      modelViewMatrix,
       translate(lightPos[0], lightPos[1], lightPos[2])
     );
     modelViewMatrix = mult(modelViewMatrix, scale(0.1, 0.1, 0.1));
@@ -204,8 +204,8 @@ function drawLightSource() {
       flatten(modelViewMatrix)
     );
 
-    // Use bright emissive material for light source
-    const lightColor = vec4(1.0, 1.0, 1.0, 1.0);
+    // Use black color for light source marker
+    const lightColor = vec4(0.0, 0.0, 0.0, 1.0); // Black color
     gl.uniform4fv(
       gl.getUniformLocation(program, "ambientProduct"),
       flatten(lightColor)
@@ -223,7 +223,7 @@ function drawLightSource() {
     drawSphere();
 
     // Restore original modelView and materials
-    modelViewMatrix  = currentModelView;
+    modelViewMatrix = currentModelView;
     gl.uniformMatrix4fv(
       gl.getUniformLocation(program, "modelViewMatrix"),
       false,

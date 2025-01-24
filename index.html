@@ -65,6 +65,8 @@
               } else {
                   spotEffect = pow(cosTheta, 50.0); // Add spotlight exponent
               }
+          } else {
+              spotEffect = 1.0;
           }
 
           vec4 ambient = ambientProduct;
