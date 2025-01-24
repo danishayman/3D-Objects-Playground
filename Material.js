@@ -18,7 +18,8 @@ var cylinderMaterial = {
     ambientCoef: 1.0,
     diffuseCoef: 1.0,
     specularCoef: 1.0,
-    shininess: 50
+    shininess: 50,
+    texture: 'none'
 };
 
 var cubeMaterial = {
@@ -28,7 +29,8 @@ var cubeMaterial = {
     ambientCoef: 1.0,
     diffuseCoef: 1.0,
     specularCoef: 1.0,
-    shininess: 50
+    shininess: 50,
+    texture: 'none'
 };
 
 var teapotMaterial = {
@@ -38,7 +40,8 @@ var teapotMaterial = {
     ambientCoef: 1.0,
     diffuseCoef: 1.0,
     specularCoef: 1.0,
-    shininess: 50
+    shininess: 50,
+    texture: 'none'
 };
 
 function initMaterialControls() {
