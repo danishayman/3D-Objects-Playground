@@ -21,7 +21,7 @@ window.onload = function init() {
   teapotObj = teapot(5); // The number controls tessellation detail
   teapotObj.rotate(45, [1, 1, 0]);
   teapotObj.scale(0.4, 0.4, 0.4); // Teapot needs different scaling
-  teapotObj.translate(0, -0.2, 0);
+  teapotObj.translate(0, -0.26, 0);
   concatData(teapotObj.TriangleVertices, teapotObj.Normals);
 
   // Add light source sphere to buffer
