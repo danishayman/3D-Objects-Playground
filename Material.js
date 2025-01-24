@@ -1,5 +1,7 @@
 // Material properties for different objects
 
+let ambientCoef, diffuseCoef, specularCoef, shininessSlider;
+
 
 
 var materialAmbient = vec4(0.5, 0.5, 1.0, 1.0);
@@ -44,10 +46,10 @@ function initMaterialControls() {
     const materialAmbientPicker = document.getElementById('material-ambient');
     const materialDiffusePicker = document.getElementById('material-diffuse');
     const materialSpecularPicker = document.getElementById('material-specular');
-    const ambientCoef = document.getElementById('ambient-coef');
-    const diffuseCoef = document.getElementById('diffuse-coef');
-    const specularCoef = document.getElementById('specular-coef');
-    const shininessSlider = document.getElementById('shininess');
+    ambientCoef = document.getElementById('ambient-coef');
+    diffuseCoef = document.getElementById('diffuse-coef');
+    specularCoef = document.getElementById('specular-coef');
+    shininessSlider = document.getElementById('shininess');
 
     // Initial material color setup
     updateMaterialColorPickers();
@@ -91,6 +93,19 @@ function updateMaterialColorPickers() {
     materialDiffusePicker.value = rgbToHex(currentMaterial.diffuse);
     materialSpecularPicker.value = rgbToHex(currentMaterial.specular);
     shininessSlider.value = currentMaterial.shininess;
+
+
+    // Update coefficient sliders
+    ambientCoef.value = currentMaterial.ambientCoef;
+    diffuseCoef.value = currentMaterial.diffuseCoef;
+    specularCoef.value = currentMaterial.specularCoef;
+    shininessSlider.value = currentMaterial.shininess;
+    
+    // Update displayed values
+    document.getElementById('ambient-coef-value').textContent = currentMaterial.ambientCoef;
+    document.getElementById('diffuse-coef-value').textContent = currentMaterial.diffuseCoef;
+    document.getElementById('specular-coef-value').textContent = currentMaterial.specularCoef;
+    document.getElementById('shininess-value').textContent = currentMaterial.shininess;
 }
 
 function updateMaterialColors() {
@@ -124,30 +139,23 @@ function updateMaterialCoefficients() {
     const ambientCoef = document.getElementById('ambient-coef');
     const diffuseCoef = document.getElementById('diffuse-coef');
     const specularCoef = document.getElementById('specular-coef');
-    const shininessSlider = document.getElementById('shininess');
 
     let currentMaterial;
     switch(objectSelect.value) {
-        case 'cylinder':
-            currentMaterial = cylinderMaterial;
-            break;
-        case 'cube':
-            currentMaterial = cubeMaterial;
-            break;
-        case 'teapot':
-            currentMaterial = teapotMaterial;
-            break;
+        case 'cylinder': currentMaterial = cylinderMaterial; break;
+        case 'cube': currentMaterial = cubeMaterial; break;
+        case 'teapot': currentMaterial = teapotMaterial; break;
     }
 
-    // Update shininess
-    currentMaterial.shininess = parseFloat(shininessSlider.value);
+    // Update coefficients
+    currentMaterial.ambientCoef = parseFloat(ambientCoef.value);
+    currentMaterial.diffuseCoef = parseFloat(diffuseCoef.value);
+    currentMaterial.specularCoef = parseFloat(specularCoef.value);
 
-    // Update coefficient displays
+    // Update displays
     document.getElementById('ambient-coef-value').textContent = ambientCoef.value;
     document.getElementById('diffuse-coef-value').textContent = diffuseCoef.value;
     document.getElementById('specular-coef-value').textContent = specularCoef.value;
-    document.getElementById('shininess-value').textContent = shininessSlider.value;
-
 }
 
 // Utility function to convert RGB vec4 to hex
@@ -163,13 +171,24 @@ function rgbToHex(vec) {
 
 
 function setMaterialUniforms(material) {
-    // Compute products using CURRENT light values
-    const ambientProduct = mult(lightAmbient, material.ambient);
-    const diffuseProduct = mult(lightDiffuse, material.diffuse);
-    const specularProduct = mult(lightSpecular, material.specular);
-  
+    // Helper function to scale color by coefficient
+    const scaleColor = (color, coef) => {
+        return vec4(
+            color[0] * coef,
+            color[1] * coef,
+            color[2] * coef,
+            color[3] // Alpha remains unchanged
+        );
+    };
+
+    // Calculate products with coefficients
+    const ambientProduct = mult(lightAmbient, scaleColor(material.ambient, material.ambientCoef));
+    const diffuseProduct = mult(lightDiffuse, scaleColor(material.diffuse, material.diffuseCoef));
+    const specularProduct = mult(lightSpecular, scaleColor(material.specular, material.specularCoef));
+
+    // Update shader uniforms
     gl.uniform4fv(ambientProductLoc, flatten(ambientProduct));
     gl.uniform4fv(diffuseProductLoc, flatten(diffuseProduct));
     gl.uniform4fv(specularProductLoc, flatten(specularProduct));
     gl.uniform1f(shininessLoc, material.shininess);
-  }
+}
