@@ -214,7 +214,7 @@ function drawCylinder() {
   
     // Pass the model view matrix from JavaScript to the GPU for use in shader
     modelViewMatrix = mat4();
-    modelViewMatrix = mult(modelViewMatrix, translate(-1.5, 0, 0));
+    modelViewMatrix = mult(modelViewMatrix, translate(-2.5, 0, 0));
     modelViewMatrix = mult(
       modelViewMatrix,
       rotate(cylinderTheta[X_AXIS], [1, 0, 0])

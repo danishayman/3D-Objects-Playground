@@ -10,7 +10,7 @@ window.onload = function init() {
   cylinderObj = cylinder(200, 3, true);
   cylinderObj.Rotate(45, [1, 1, 0]);
   cylinderObj.Scale(1.2, 1.2, 1.2);
-  cylinderObj.Translate(-1, 0, 0);
+  cylinderObj.Translate(0, 0, 0);
   concatData(cylinderObj.Point, cylinderObj.Normal);
 
 
@@ -24,7 +24,7 @@ window.onload = function init() {
   cubeObj = cube();
   cubeObj.Rotate(45, [1, 1, 0]);
   cubeObj.Scale(1, 1, 1);
-  cubeObj.Translate(1, 0, 0);
+  cubeObj.Translate(0, 0, 0);
   concatData(cubeObj.Point, cubeObj.Normal);
 
   // Add light source sphere to buffer
