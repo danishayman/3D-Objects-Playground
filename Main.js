@@ -41,7 +41,7 @@ window.onload = function init() {
   render();
   // Initialize light controls
   initLightControls();
-    
+
   // Initial updates
   updateLightProducts();
   updateLightSource();
@@ -80,6 +80,10 @@ function getUIElement() {
 
   cylinderBtn.onclick = function () {
     cylinderFlag = !cylinderFlag;
+    // Disable cylinder radio buttons during animation
+    cylinderX.disabled = cylinderFlag;
+    cylinderY.disabled = cylinderFlag;
+    cylinderZ.disabled = cylinderFlag;
   };
 
   cubeX.onchange = function () {
@@ -96,6 +100,10 @@ function getUIElement() {
 
   cubeBtn.onclick = function () {
     cubeFlag = !cubeFlag;
+    // Disable cube radio buttons during animation
+    cubeX.disabled = cubeFlag;
+    cubeY.disabled = cubeFlag;
+    cubeZ.disabled = cubeFlag;
   };
 
   teapotX.onchange = function () {
@@ -113,10 +121,12 @@ function getUIElement() {
   teapotBtn.onclick = function () {
     teapotFlag = !teapotFlag;
     teapotRotating = teapotFlag;
+    // Disable teapot radio buttons during animation
+    teapotX.disabled = teapotFlag;
+    teapotY.disabled = teapotFlag;
+    teapotZ.disabled = teapotFlag;
   };
 }
-
-
 
 // Render the graphics for viewing
 function render() {
@@ -162,14 +172,11 @@ function render() {
 function animUpdate() {
   // Clear the color buffer and the depth buffer before rendering a new frame
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  
 
   drawCylinder();
   drawTeapot();
   drawCube();
   drawLightSource();
-
-
 
   // Schedule the next frame for a looped animation (60fps)
   animFrame = window.requestAnimationFrame(animUpdate);
