@@ -194,7 +194,7 @@ function drawLightSource() {
     // Transform light source
     modelViewMatrix = mat4();
     modelViewMatrix = mult(modelViewMatrix, translate(lightPos[0], lightPos[1], lightPos[2]));
-    modelViewMatrix = mult(modelViewMatrix, scale(0.1, 0.1, 0.1)); // Increased scale for visibility
+    modelViewMatrix = mult(modelViewMatrix, scale(0.07, 0.07, 0.07)); // Increased scale for visibility
 
     // Calculate normal matrix
     nMatrix = normalMatrix(modelViewMatrix);
