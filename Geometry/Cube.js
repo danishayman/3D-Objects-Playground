@@ -132,7 +132,7 @@ function drawCube() {
     nMatrix = normalMatrix(modelViewMatrix);
     gl.uniformMatrix3fv(normalMatrixLoc, false, nMatrix);
   
-    const offset = cylinderV + teapotV;
+    const offset = cylinderV;
   
     // Draw the primitive from the last index of shape 1 to the last index of shape 2
     gl.drawArrays(gl.TRIANGLES, offset, cubeV);

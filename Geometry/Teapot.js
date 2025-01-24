@@ -802,6 +802,6 @@ function drawTeapot() {
     flatten(modelViewMatrix)
   );
 
-  offset = cylinderV;
+  offset = cylinderV + cubeV;
   gl.drawArrays(gl.TRIANGLES, offset, teapotV);
 }
