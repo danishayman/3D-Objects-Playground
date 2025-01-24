@@ -90,9 +90,9 @@ function updateLightType() {
 }
 
 function hexToRGB(hex) {
-    const r = parseInt(hex.substr(1,2), 16) / 255;
-    const g = parseInt(hex.substr(3,2), 16) / 255;
-    const b = parseInt(hex.substr(5,2), 16) / 255;
+    const r = parseInt(hex.substring(1, 3), 16) / 255;
+    const g = parseInt(hex.substring(3, 5), 16) / 255;
+    const b = parseInt(hex.substring(5, 7), 16) / 255;
     return vec4(r, g, b, 1.0);
 }
 
@@ -121,12 +121,27 @@ function updateLightPosition() {
 }
 
 function updateLightProducts() {
-    // Calculate lighting products
-    ambientProduct = mult(lightAmbient, materialAmbient);
-    diffuseProduct = mult(lightDiffuse, materialDiffuse);
-    specularProduct = mult(lightSpecular, materialSpecular);
-    
-    // Send to shader
+    // Component-wise multiplication for light and material properties
+    ambientProduct = vec4(
+        lightAmbient[0] * materialAmbient[0],
+        lightAmbient[1] * materialAmbient[1],
+        lightAmbient[2] * materialAmbient[2],
+        lightAmbient[3] * materialAmbient[3]
+    );
+    diffuseProduct = vec4(
+        lightDiffuse[0] * materialDiffuse[0],
+        lightDiffuse[1] * materialDiffuse[1],
+        lightDiffuse[2] * materialDiffuse[2],
+        lightDiffuse[3] * materialDiffuse[3]
+    );
+    specularProduct = vec4(
+        lightSpecular[0] * materialSpecular[0],
+        lightSpecular[1] * materialSpecular[1],
+        lightSpecular[2] * materialSpecular[2],
+        lightSpecular[3] * materialSpecular[3]
+    );
+
+    // Send updated products to the shader
     gl.uniform4fv(gl.getUniformLocation(program, "ambientProduct"), flatten(ambientProduct));
     gl.uniform4fv(gl.getUniformLocation(program, "diffuseProduct"), flatten(diffuseProduct));
     gl.uniform4fv(gl.getUniformLocation(program, "specularProduct"), flatten(specularProduct));
