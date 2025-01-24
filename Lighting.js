@@ -62,6 +62,8 @@ function initLightControls() {
   spotlightDirX.addEventListener("input", updateSpotlightParams);
   spotlightDirY.addEventListener("input", updateSpotlightParams);
   spotlightDirZ.addEventListener("input", updateSpotlightParams);
+  updateLightType();
+ 
 }
 
 function updateLightSource() {
