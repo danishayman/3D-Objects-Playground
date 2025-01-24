@@ -41,6 +41,15 @@ function configWebGL() {
   modelViewMatrixLoc = gl.getUniformLocation(program, "modelViewMatrix");
   projectionMatrixLoc = gl.getUniformLocation(program, "projectionMatrix");
   normalMatrixLoc = gl.getUniformLocation(program, "normalMatrix");
+
+
+  gl.uniform1i(gl.getUniformLocation(program, "isSpotlight"), 0);
+  gl.uniform3fv(gl.getUniformLocation(program, "spotlightDir"), 
+               flatten(vec3(0, -1, 0)));
+  gl.uniform1f(gl.getUniformLocation(program, "spotlightCutoff"), 
+              Math.cos(45 * Math.PI/180));
+
+  gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
 }
 
 // Concatenate the corresponding shape's values

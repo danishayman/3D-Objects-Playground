@@ -65,16 +65,32 @@ function initLightControls() {
 }
 
 function updateLightSource() {
-  // Show/hide relevant controls based on light source
-  const isSpotlight = lightSourceSelect.value === "spot";
-  const spotlightElements = document.querySelectorAll(
-    ".spotlight-direction, .spotlight-control"
-  );
-  spotlightElements.forEach((elem) => {
-    elem.style.pointerEvents = isSpotlight ? "auto" : "none";
-    elem.style.opacity = isSpotlight ? "1" : "0.5";
-  });
-  gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
+    const isSpotlight = lightSourceSelect.value === "spot";
+    
+    // Force positional light when using spotlight
+    if(isSpotlight) {
+        lightTypeSelect.value = "positional";
+        lightPos[3] = 1.0;
+        lightTypeSelect.disabled = true;
+    } else {
+        lightTypeSelect.disabled = false;
+    }
+    
+    // Update shader uniforms
+    gl.uniform1i(gl.getUniformLocation(program, "isSpotlight"), isSpotlight ? 1 : 0);
+    gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
+    
+    // Update spotlight controls visibility
+    const spotlightElements = document.querySelectorAll(".spotlight-direction, .spotlight-control");
+    spotlightElements.forEach(elem => {
+        elem.style.pointerEvents = isSpotlight ? "auto" : "none";
+        elem.style.opacity = isSpotlight ? "1" : "0.5";
+    });
+    
+    // Initialize spotlight parameters
+    if(isSpotlight) {
+        updateSpotlightParams();
+    }
 }
 
 function toggleLight(event) {
@@ -93,9 +109,11 @@ function toggleLight(event) {
 }
 
 function updateLightType() {
-  // Update w component of lightPos (0.0 for directional, 1.0 for positional)
-  lightPos[3] = lightTypeSelect.value === "directional" ? 0.0 : 1.0;
-  gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
+    lightPos[3] = lightTypeSelect.value === "directional" ? 0.0 : 1.0;
+    gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
+    
+    // Redraw light source if changing to positional
+    if(lightPos[3] === 1.0) drawLightSource();
 }
 
 function hexToRGB(hex) {
@@ -205,11 +223,11 @@ function drawLightSource() {
     drawSphere();
 
     // Restore original modelView and materials
-    modelView = currentModelView;
+    modelViewMatrix  = currentModelView;
     gl.uniformMatrix4fv(
       gl.getUniformLocation(program, "modelViewMatrix"),
       false,
-      flatten(modelView)
+      flatten(modelViewMatrix)
     );
     updateLightProducts();
   }
@@ -217,9 +235,9 @@ function drawLightSource() {
 
 
 function updateSpotlightParams() {
+  
     const cutoffAngle = parseFloat(spotlightCutoff.value);
-    const cutoffRadians = cutoffAngle * Math.PI / 180;
-    gl.uniform1f(gl.getUniformLocation(program, "spotlightCutoff"), cutoffRadians);
+    gl.uniform1f(gl.getUniformLocation(program, "spotlightCutoff"), cutoffAngle);
     
     const dirX = parseFloat(spotlightDirX.value);
     const dirY = parseFloat(spotlightDirY.value);
