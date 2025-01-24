@@ -9,26 +9,29 @@ window.onload = function init() {
   cylinderObj = cylinder(72, 3, true);
   cylinderObj.Rotate(45, [1, 1, 0]);
   cylinderObj.Scale(1.2, 1.2, 1.2);
+  cylinderObj.Translate(-1, 0, 0);
   concatData(cylinderObj.Point, cylinderObj.Normal);
 
   cubeObj = cube();
   cubeObj.Rotate(45, [1, 1, 0]);
   cubeObj.Scale(1, 1, 1);
+  cubeObj.Translate(1, 0, 0);
   concatData(cubeObj.Point, cubeObj.Normal);
 
-  sphereObj = sphere(5);
-  sphereObj.Rotate(45, [1, 1, 0]);
-  sphereObj.Scale(0.75, 0.75, 0.75);
-  concatData(sphereObj.Point, sphereObj.Normal);
+  teapotObj = teapot(5); // The number controls tessellation detail
+  teapotObj.rotate(45, [1, 1, 0]);
+  teapotObj.scale(0.4, 0.4, 0.4); // Teapot needs different scaling
+  teapotObj.translate(0, -0.2, 0);
+  concatData(teapotObj.TriangleVertices, teapotObj.Normals);
 
   // Add light source sphere to buffer
   lightSphereObj = sphere(3); // Create simpler sphere
   concatData(lightSphereObj.Point, lightSphereObj.Normal);
-  lightSphereV = lightSphereObj.Point.length;
 
+  lightSphereV = lightSphereObj.Point.length;
   cylinderV = cylinderObj.Point.length;
   cubeV = cubeObj.Point.length;
-  sphereV = sphereObj.Point.length;
+  teapotV = teapotObj.TriangleVertices.length;
   totalV = pointsArray.length;
 
   // WebGL setups
@@ -161,6 +164,7 @@ function animUpdate() {
   drawCylinder();
   drawCube();
   drawSphere();
+  drawTeapot();
   drawLightSource();
 
   // Schedule the next frame for a looped animation (60fps)
