@@ -57,10 +57,34 @@ function configWebGL() {
   diffuseProductLoc = gl.getUniformLocation(program, "diffuseProduct");
   specularProductLoc = gl.getUniformLocation(program, "specularProduct");
   shininessLoc = gl.getUniformLocation(program, "shininess");
+
+  // Texture coordinate buffer
+  const texCoordBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texCoordsArray), gl.STATIC_DRAW);
+  
+  const vTexCoord = gl.getAttribLocation(program, "vTexCoord");
+  gl.vertexAttribPointer(vTexCoord, 2, gl.FLOAT, false, 0, 0);
+  gl.enableVertexAttribArray(vTexCoord);
+  
+  // Add texture uniforms
+  uTextureLoc = gl.getUniformLocation(program, "uTexture");
+  uUseTextureLoc = gl.getUniformLocation(program, "uUseTexture");
 }
 
 // Concatenate the corresponding shape's values
-function concatData(point, normal) {
-  pointsArray = pointsArray.concat(point);
-  normalsArray = normalsArray.concat(normal);
+function concatData(vertices, normals, texCoords = []) {
+  for(let i = 0; i < vertices.length; i += 3) {
+      // Push vertex coordinates
+      pointsArray.push(vertices[i], vertices[i+1], vertices[i+2]);
+      
+      // Push normal coordinates
+      normalsArray.push(normals[i], normals[i+1], normals[i+2]);
+      
+      // Push texture coordinates (every 2 elements)
+      if(texCoords.length > 0) {
+          const texIndex = (i/3) * 2;
+          texCoordsArray.push(texCoords[texIndex] || 0, texCoords[texIndex+1] || 0);
+      }
+  }
 }

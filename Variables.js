@@ -59,3 +59,5 @@ var teapotAxis = X_AXIS; // Default axis
 
 var ambientProductLoc, diffuseProductLoc, specularProductLoc, shininessLoc;
 
+let texCoordsArray = [];
+
