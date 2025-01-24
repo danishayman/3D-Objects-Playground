@@ -21,6 +21,11 @@ window.onload = function init() {
   sphereObj.Scale(0.75, 0.75, 0.75);
   concatData(sphereObj.Point, sphereObj.Normal);
 
+  // Add light source sphere to buffer
+  lightSphereObj = sphere(3); // Create simpler sphere
+  concatData(lightSphereObj.Point, lightSphereObj.Normal);
+  lightSphereV = lightSphereObj.Point.length;
+
   cylinderV = cylinderObj.Point.length;
   cubeV = cubeObj.Point.length;
   sphereV = sphereObj.Point.length;

@@ -188,7 +188,9 @@ function drawLightSource() {
   // Only draw if it's a point light (w component is 1.0)
   if (lightPos[3] === 1.0) {
     // Save current modelView matrix
-    const currentModelView = modelViewMatrix;
+    var currentModelView = modelViewMatrix;
+    modelViewMatrix = mat4();
+    
 
     // Create small sphere at light position
     modelViewMatrix = mult(
@@ -205,7 +207,7 @@ function drawLightSource() {
     );
 
     // Use black color for light source marker
-    const lightColor = vec4(0.0, 0.0, 0.0, 1.0); // Black color
+    const lightColor = vec4(1.0, 1.0, 1.0, 1.0);
     gl.uniform4fv(
       gl.getUniformLocation(program, "ambientProduct"),
       flatten(lightColor)
