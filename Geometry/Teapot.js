@@ -784,6 +784,9 @@ var teapotAngle = 0;
 
 function drawTeapot() {
 
+    const material = teapotMaterial;
+    setMaterialUniforms(material);
+
 
     if (teapotFlag) {
         teapotTheta[teapotAxis] += 1;

@@ -115,6 +115,10 @@ function cube() {
 
 
 function drawCube() {
+
+
+    const material = cubeMaterial;
+    setMaterialUniforms(material);
     // Increment the rotation value if the animation is enabled
     if (cubeFlag) {
       cubeTheta[cubeAxis] += 1;

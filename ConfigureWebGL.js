@@ -50,6 +50,13 @@ function configWebGL() {
               Math.cos(45 * Math.PI/180));
 
   gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
+
+
+  // Inside configWebGL() or init(), after program setup:
+  ambientProductLoc = gl.getUniformLocation(program, "ambientProduct");
+  diffuseProductLoc = gl.getUniformLocation(program, "diffuseProduct");
+  specularProductLoc = gl.getUniformLocation(program, "specularProduct");
+  shininessLoc = gl.getUniformLocation(program, "shininess");
 }
 
 // Concatenate the corresponding shape's values

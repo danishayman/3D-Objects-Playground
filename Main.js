@@ -43,6 +43,7 @@ window.onload = function init() {
   render();
   // Initialize light controls
   initLightControls();
+  initMaterialControls();
     
   // Initial updates
   updateLightProducts();

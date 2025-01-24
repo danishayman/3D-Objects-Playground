@@ -1,0 +1,197 @@
+// Material properties for different objects
+var cylinderMaterial = {
+    ambient: vec4(0.5, 0.5, 1.0, 1.0),
+    diffuse: vec4(0.0, 0.9, 1.0, 1.0),
+    specular: vec4(1.0, 1.0, 1.0, 1.0),
+    shininess: 60
+};
+
+var cubeMaterial = {
+    ambient: vec4(1.0, 0.5, 0.5, 1.0),
+    diffuse: vec4(0.9, 0.0, 0.0, 1.0),
+    specular: vec4(1.0, 1.0, 1.0, 1.0),
+    shininess: 60
+};
+
+var teapotMaterial = {
+    ambient: vec4(0.5, 1.0, 0.5, 1.0),
+    diffuse: vec4(0.0, 1.0, 0.0, 1.0),
+    specular: vec4(1.0, 1.0, 1.0, 1.0),
+    shininess: 60
+};
+
+function initMaterialControls() {
+    const objectSelect = document.getElementById('object-select');
+    const materialAmbientPicker = document.getElementById('material-ambient');
+    const materialDiffusePicker = document.getElementById('material-diffuse');
+    const materialSpecularPicker = document.getElementById('material-specular');
+    const ambientCoef = document.getElementById('ambient-coef');
+    const diffuseCoef = document.getElementById('diffuse-coef');
+    const specularCoef = document.getElementById('specular-coef');
+    const shininessSlider = document.getElementById('shininess');
+
+    // Initial material color setup
+    updateMaterialColorPickers();
+
+    objectSelect.addEventListener('change', updateMaterialColorPickers);
+
+    // Color picker event listeners
+    materialAmbientPicker.addEventListener('input', updateMaterialColors);
+    materialDiffusePicker.addEventListener('input', updateMaterialColors);
+    materialSpecularPicker.addEventListener('input', updateMaterialColors);
+
+    // Coefficient and shininess sliders
+    ambientCoef.addEventListener('input', updateMaterialCoefficients);
+    diffuseCoef.addEventListener('input', updateMaterialCoefficients);
+    specularCoef.addEventListener('input', updateMaterialCoefficients);
+    shininessSlider.addEventListener('input', updateMaterialCoefficients);
+}
+
+function updateMaterialColorPickers() {
+    const objectSelect = document.getElementById('object-select');
+    const materialAmbientPicker = document.getElementById('material-ambient');
+    const materialDiffusePicker = document.getElementById('material-diffuse');
+    const materialSpecularPicker = document.getElementById('material-specular');
+    const shininessSlider = document.getElementById('shininess');
+
+    let currentMaterial;
+    switch(objectSelect.value) {
+        case 'cylinder':
+            currentMaterial = cylinderMaterial;
+            break;
+        case 'cube':
+            currentMaterial = cubeMaterial;
+            break;
+        case 'teapot':
+            currentMaterial = teapotMaterial;
+            break;
+    }
+
+    // Update color pickers
+    materialAmbientPicker.value = rgbToHex(currentMaterial.ambient);
+    materialDiffusePicker.value = rgbToHex(currentMaterial.diffuse);
+    materialSpecularPicker.value = rgbToHex(currentMaterial.specular);
+    shininessSlider.value = currentMaterial.shininess;
+}
+
+function updateMaterialColors() {
+    const objectSelect = document.getElementById('object-select');
+    const materialAmbientPicker = document.getElementById('material-ambient');
+    const materialDiffusePicker = document.getElementById('material-diffuse');
+    const materialSpecularPicker = document.getElementById('material-specular');
+
+    let currentMaterial;
+    switch(objectSelect.value) {
+        case 'cylinder':
+            currentMaterial = cylinderMaterial;
+            break;
+        case 'cube':
+            currentMaterial = cubeMaterial;
+            break;
+        case 'teapot':
+            currentMaterial = teapotMaterial;
+            break;
+    }
+
+    // Convert hex to vec4
+    currentMaterial.ambient = hexToRGB(materialAmbientPicker.value);
+    currentMaterial.diffuse = hexToRGB(materialDiffusePicker.value);
+    currentMaterial.specular = hexToRGB(materialSpecularPicker.value);
+
+    // Update material properties for ONLY the selected object
+    updateObjectMaterials(objectSelect.value);
+}
+
+function updateMaterialCoefficients() {
+    const objectSelect = document.getElementById('object-select');
+    const ambientCoef = document.getElementById('ambient-coef');
+    const diffuseCoef = document.getElementById('diffuse-coef');
+    const specularCoef = document.getElementById('specular-coef');
+    const shininessSlider = document.getElementById('shininess');
+
+    let currentMaterial;
+    switch(objectSelect.value) {
+        case 'cylinder':
+            currentMaterial = cylinderMaterial;
+            break;
+        case 'cube':
+            currentMaterial = cubeMaterial;
+            break;
+        case 'teapot':
+            currentMaterial = teapotMaterial;
+            break;
+    }
+
+    // Update shininess
+    currentMaterial.shininess = parseFloat(shininessSlider.value);
+
+    // Update coefficient displays
+    document.getElementById('ambient-coef-value').textContent = ambientCoef.value;
+    document.getElementById('diffuse-coef-value').textContent = diffuseCoef.value;
+    document.getElementById('specular-coef-value').textContent = specularCoef.value;
+    document.getElementById('shininess-value').textContent = shininessSlider.value;
+
+    // Update material properties for ONLY the selected object
+    updateObjectMaterials(objectSelect.value);
+}
+
+function updateObjectMaterials(selectedObject) {
+    let materialAmbient, materialDiffuse, materialSpecular, objectShininess;
+
+    // Determine current material based on selected object
+    switch(selectedObject) {
+        case 'cylinder':
+            materialAmbient = cylinderMaterial.ambient;
+            materialDiffuse = cylinderMaterial.diffuse;
+            materialSpecular = cylinderMaterial.specular;
+            objectShininess = cylinderMaterial.shininess;
+            break;
+        case 'cube':
+            materialAmbient = cubeMaterial.ambient;
+            materialDiffuse = cubeMaterial.diffuse;
+            materialSpecular = cubeMaterial.specular;
+            objectShininess = cubeMaterial.shininess;
+            break;
+        case 'teapot':
+            materialAmbient = teapotMaterial.ambient;
+            materialDiffuse = teapotMaterial.diffuse;
+            materialSpecular = teapotMaterial.specular;
+            objectShininess = teapotMaterial.shininess;
+            break;
+    }
+
+    // Use the current object's material properties
+    materialAmbient = mult(lightAmbient, materialAmbient);
+    materialDiffuse = mult(lightDiffuse, materialDiffuse);
+    materialSpecular = mult(lightSpecular, materialSpecular);
+
+    // Update shader uniforms for the selected object
+    gl.uniform4fv(gl.getUniformLocation(program, "ambientProduct"), flatten(materialAmbient));
+    gl.uniform4fv(gl.getUniformLocation(program, "diffuseProduct"), flatten(materialDiffuse));
+    gl.uniform4fv(gl.getUniformLocation(program, "specularProduct"), flatten(materialSpecular));
+    gl.uniform1f(gl.getUniformLocation(program, "shininess"), objectShininess);
+}
+
+// Utility function to convert RGB vec4 to hex
+function rgbToHex(vec) {
+    const r = Math.round(vec[0] * 255);
+    const g = Math.round(vec[1] * 255);
+    const b = Math.round(vec[2] * 255);
+    return '#' + [r, g, b].map(x => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? '0' + hex : hex;
+    }).join('');
+}
+
+
+function setMaterialUniforms(material) {
+    // Compute products using CURRENT light values
+    const ambientProduct = mult(lightAmbient, material.ambient);
+    const diffuseProduct = mult(lightDiffuse, material.diffuse);
+    const specularProduct = mult(lightSpecular, material.specular);
+  
+    gl.uniform4fv(ambientProductLoc, flatten(ambientProduct));
+    gl.uniform4fv(diffuseProductLoc, flatten(diffuseProduct));
+    gl.uniform4fv(specularProductLoc, flatten(specularProduct));
+    gl.uniform1f(shininessLoc, material.shininess);
+  }

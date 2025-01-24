@@ -206,6 +206,9 @@ function cylinder(numSlices, numStacks, caps) {
 
 // Draw the first shape (cylinder)
 function drawCylinder() {
+
+    const material = cylinderMaterial;
+    setMaterialUniforms(material);
     
     // Increment the rotation value if the animation is enabled
     if (cylinderFlag) {

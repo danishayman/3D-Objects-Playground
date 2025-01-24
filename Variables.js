@@ -56,3 +56,6 @@ var teapotRotating = false;
 var currentTeapotAngle = 0;
 var teapotAxis = X_AXIS; // Default axis
 
+
+var ambientProductLoc, diffuseProductLoc, specularProductLoc, shininessLoc;
+
