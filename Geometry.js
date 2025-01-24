@@ -1,5 +1,6 @@
 // Draw the first shape (cylinder)
 function drawCylinder() {
+  const offset = 0;
   // Increment the rotation value if the animation is enabled
   if (cylinderFlag) {
     cylinderTheta[cylinderAxis] += 1;
@@ -27,7 +28,7 @@ function drawCylinder() {
   gl.uniformMatrix3fv(normalMatrixLoc, false, nMatrix);
 
   // Draw the primitive from index 0 to the last index of shape 1
-  gl.drawArrays(gl.TRIANGLES, 0, cylinderV);
+  gl.drawArrays(gl.TRIANGLES, offset, cylinderV);
 }
 
 // Draw the second shape (cube)
@@ -49,8 +50,10 @@ function drawCube() {
   nMatrix = normalMatrix(modelViewMatrix);
   gl.uniformMatrix3fv(normalMatrixLoc, false, nMatrix);
 
+  const offset = cylinderV;
+
   // Draw the primitive from the last index of shape 1 to the last index of shape 2
-  gl.drawArrays(gl.TRIANGLES, cylinderV, cubeV);
+  gl.drawArrays(gl.TRIANGLES, offset, cubeV);
 }
 
 //Draw the third shape (sphere)

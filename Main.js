@@ -60,10 +60,10 @@ function getUIElement() {
   cubeZ = document.getElementById("cube-z");
   cubeBtn = document.getElementById("cube-btn");
 
-  sphereX = document.getElementById("sphere-x");
-  sphereY = document.getElementById("sphere-y");
-  sphereZ = document.getElementById("sphere-z");
-  sphereBtn = document.getElementById("sphere-btn");
+  teapotX = document.getElementById("teapot-x");
+  teapotY = document.getElementById("teapot-y");
+  teapotZ = document.getElementById("teapot-z");
+  teapotBtn = document.getElementById("teapot-btn");
 
   cylinderX.onchange = function () {
     if (cylinderX.checked) cylinderAxis = X_AXIS;
@@ -97,20 +97,21 @@ function getUIElement() {
     cubeFlag = !cubeFlag;
   };
 
-  sphereX.onchange = function () {
-    if (sphereX.checked) sphereAxis = X_AXIS;
+  teapotX.onchange = function () {
+    if (teapotX.checked) teapotAxis = X_AXIS;
   };
 
-  sphereY.onchange = function () {
-    if (sphereY.checked) sphereAxis = Y_AXIS;
+  teapotY.onchange = function () {
+    if (teapotY.checked) teapotAxis = Y_AXIS;
   };
 
-  sphereZ.onchange = function () {
-    if (sphereZ.checked) sphereAxis = Z_AXIS;
+  teapotZ.onchange = function () {
+    if (teapotZ.checked) teapotAxis = Z_AXIS;
   };
 
-  sphereBtn.onclick = function () {
-    sphereFlag = !sphereFlag;
+  teapotBtn.onclick = function () {
+    teapotFlag = !teapotFlag;
+    teapotRotating = teapotFlag;
   };
 }
 
@@ -119,10 +120,10 @@ function getUIElement() {
 // Render the graphics for viewing
 function render() {
   // Cancel the animation frame before performing any graphic rendering
-  if (cylinderFlag || cubeFlag || sphereFlag) {
+  if (cylinderFlag || cubeFlag || teapotFlag) {
     cylinderFlag = false;
     cubeFlag = false;
-    sphereFlag = false;
+    teapotFlag = false;
     window.cancelAnimationFrame(animFrame);
   }
 

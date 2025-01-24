@@ -780,22 +780,29 @@ function teapot(num) {
     
     }
 
+// Add a rotation angle variable for the teapot
+var teapotAngle = 0;
 
 function drawTeapot() {
-    // Calculate offset based on previous objects
-    const offset = cylinderV + cubeV; // After cylinder and cube vertices
-    
-    // Set model-view matrix (if you need dynamic transformations)
-    modelViewMatrix = mat4(); // Start with identity
-    // Apply transformations here if needed
-    // modelViewMatrix = mult(modelViewMatrix, rotate(currentAngle, [0,1,0]));
-    
-    gl.uniformMatrix4fv(
-      gl.getUniformLocation(program, "modelViewMatrix"),
-      false,
-      flatten(modelViewMatrix)
-    );
-    
-    // Draw teapot vertices
-    gl.drawArrays(gl.TRIANGLES, offset, teapotV);
-  }
+
+
+    if (teapotFlag) {
+        teapotTheta[teapotAxis] += 1;
+      }
+
+
+  // Set up model-view matrix with transformations
+  modelViewMatrix = mat4();
+  modelViewMatrix = mult(modelViewMatrix, rotate(teapotTheta[X_AXIS], [1, 0, 0]));
+  modelViewMatrix = mult(modelViewMatrix, rotate(teapotTheta[Y_AXIS], [0, 1, 0]));
+  modelViewMatrix = mult(modelViewMatrix, rotate(teapotTheta[Z_AXIS], [0, 0, 1]));
+
+  gl.uniformMatrix4fv(
+    gl.getUniformLocation(program, "modelViewMatrix"),
+    false,
+    flatten(modelViewMatrix)
+  );
+
+  offset = cylinderV + cubeV;
+  gl.drawArrays(gl.TRIANGLES, offset, teapotV);
+}
