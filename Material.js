@@ -226,7 +226,7 @@ function initTextures() {
             gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
             gl.generateMipmap(gl.TEXTURE_2D);
         };
-        image.src = `textures/${name}.jpg`;
+        image.src = `Textures/${name}.jpg`;
     });
 }
 
