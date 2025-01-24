@@ -13,6 +13,9 @@ var cylinderMaterial = {
     ambient: vec4(0.5, 0.5, 1.0, 1.0),
     diffuse: vec4(0.0, 0.9, 1.0, 1.0),
     specular: vec4(1.0, 1.0, 1.0, 1.0),
+    ambientCoef: 0.2,
+    diffuseCoef: 0.6,
+    specularCoef: 0.3,
     shininess: 60
 };
 
@@ -20,6 +23,9 @@ var cubeMaterial = {
     ambient: vec4(1.0, 0.5, 0.5, 1.0),
     diffuse: vec4(0.9, 0.0, 0.0, 1.0),
     specular: vec4(1.0, 1.0, 1.0, 1.0),
+    ambientCoef: 0.2,
+    diffuseCoef: 0.6,
+    specularCoef: 0.3,
     shininess: 60
 };
 
@@ -27,6 +33,9 @@ var teapotMaterial = {
     ambient: vec4(0.5, 1.0, 0.5, 1.0),
     diffuse: vec4(0.0, 1.0, 0.0, 1.0),
     specular: vec4(1.0, 1.0, 1.0, 1.0),
+    ambientCoef: 0.2,
+    diffuseCoef: 0.6,
+    specularCoef: 0.3,
     shininess: 60
 };
 
