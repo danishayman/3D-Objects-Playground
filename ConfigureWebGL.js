@@ -74,17 +74,16 @@ function configWebGL() {
 
 // Concatenate the corresponding shape's values
 function concatData(vertices, normals, texCoords = []) {
-  for(let i = 0; i < vertices.length; i += 3) {
-      // Push vertex coordinates
-      pointsArray.push(vertices[i], vertices[i+1], vertices[i+2]);
-      
-      // Push normal coordinates
-      normalsArray.push(normals[i], normals[i+1], normals[i+2]);
-      
-      // Push texture coordinates (every 2 elements)
-      if(texCoords.length > 0) {
-          const texIndex = (i/3) * 2;
-          texCoordsArray.push(texCoords[texIndex] || 0, texCoords[texIndex+1] || 0);
+  for (let i = 0; i < vertices.length; i++) {
+      // Flatten vertex (4 components)
+      pointsArray.push(...vertices[i]);
+      // Flatten normal (3 components)
+      normalsArray.push(...normals[i].slice(0, 3));
+      // Texture coordinates (if available)
+      if (i < texCoords.length) {
+          texCoordsArray.push(...texCoords[i]);
+      } else {
+          texCoordsArray.push(0, 0); // Default if not provided
       }
   }
 }

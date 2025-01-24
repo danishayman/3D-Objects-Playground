@@ -177,14 +177,14 @@ function rgbToHex(vec) {
 
 function setMaterialUniforms(material) {
     // Helper function to scale color by coefficient
-    const scaleColor = (color, coef) => {
+    function scaleColor(color, coef) {
         return vec4(
             color[0] * coef,
             color[1] * coef,
             color[2] * coef,
-            color[3] // Alpha remains unchanged
+            color[3]
         );
-    };
+    }
 
     // Calculate products with coefficients
     const ambientProduct = mult(lightAmbient, scaleColor(material.ambient, material.ambientCoef));
@@ -196,6 +196,16 @@ function setMaterialUniforms(material) {
     gl.uniform4fv(diffuseProductLoc, flatten(diffuseProduct));
     gl.uniform4fv(specularProductLoc, flatten(specularProduct));
     gl.uniform1f(shininessLoc, material.shininess);
+
+    // Texture handling
+    if (material.texture !== 'none' && textures[material.texture]) {
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, textures[material.texture]);
+        gl.uniform1i(uTextureLoc, 0);
+        gl.uniform1i(uUseTextureLoc, 1);
+    } else {
+        gl.uniform1i(uUseTextureLoc, 0);
+    }
 }
 
 
@@ -228,6 +238,8 @@ function initTextures() {
         };
         image.src = `Textures/${name}.jpg`;
     });
+
+    console.log("Textures loaded");
 }
 
 
@@ -243,4 +255,5 @@ function updateTexture() {
     }
     
     currentMaterial.texture = textureSelect.value;
+    console.log(currentMaterial.texture);
 }

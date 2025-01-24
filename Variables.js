@@ -61,3 +61,5 @@ var ambientProductLoc, diffuseProductLoc, specularProductLoc, shininessLoc;
 
 let texCoordsArray = [];
 
+var uTextureLoc, uUseTextureLoc;
+
