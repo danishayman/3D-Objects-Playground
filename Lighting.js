@@ -24,6 +24,8 @@ function initLightControls() {
   lightToggle = document.getElementById("light-toggle");
   lightTypeSelect = document.getElementById("point-light-type");
 
+  
+
   // Color pickers
   ambientColorPicker = document.getElementById("ambient-color");
   diffuseColorPicker = document.getElementById("diffuse-color");
@@ -62,6 +64,7 @@ function initLightControls() {
   spotlightDirX.addEventListener("input", updateSpotlightParams);
   spotlightDirY.addEventListener("input", updateSpotlightParams);
   spotlightDirZ.addEventListener("input", updateSpotlightParams);
+  updateLightType();
 }
 
 function updateLightSource() {
@@ -185,51 +188,54 @@ function updateLightProducts() {
 }
 
 function drawLightSource() {
-  // Only draw if it's a point light
+
   if (lightPos[3] === 1.0) {
-    // Save current modelView matrix
-    var currentModelView = modelViewMatrix;
+    // Save current matrices
+    const currentModelView = modelViewMatrix;
+    const currentNMatrix = nMatrix;
+
+    // Transform light source
     modelViewMatrix = mat4();
+    modelViewMatrix = mult(modelViewMatrix, translate(lightPos[0], lightPos[1], lightPos[2]));
+    modelViewMatrix = mult(modelViewMatrix, scale(0.1, 0.1, 0.1)); // Increased scale for visibility
+
+    // Calculate normal matrix
+    nMatrix = normalMatrix(modelViewMatrix);
     
-
-    // Create small sphere at light position
-    modelViewMatrix = mult(
-      modelViewMatrix,
-      translate(lightPos[0], lightPos[1], lightPos[2])
-    );
-    modelViewMatrix = mult(modelViewMatrix, scale(0.1, 0.1, 0.1));
-
-    // Update modelView matrix in shader
+    // Update shader uniforms
     gl.uniformMatrix4fv(
       gl.getUniformLocation(program, "modelViewMatrix"),
       false,
       flatten(modelViewMatrix)
     );
-
-    // Use black color for light source marker
-    const lightColor = vec4(1.0, 1.0, 1.0, 1.0);
-    gl.uniform4fv(
-      gl.getUniformLocation(program, "ambientProduct"),
-      flatten(lightColor)
-    );
-    gl.uniform4fv(
-      gl.getUniformLocation(program, "diffuseProduct"),
-      flatten(lightColor)
-    );
-    gl.uniform4fv(
-      gl.getUniformLocation(program, "specularProduct"),
-      flatten(lightColor)
+    gl.uniformMatrix3fv(
+      gl.getUniformLocation(program, "normalMatrix"),
+      false,
+      nMatrix
     );
 
-    // Draw sphere
-    drawSphere();
+    // Set light color (full black)
+    const lightColor = vec4(0.2, 0.2, 0.2, 1.0);
+    gl.uniform4fv(gl.getUniformLocation(program, "ambientProduct"), flatten(lightColor));
+    gl.uniform4fv(gl.getUniformLocation(program, "diffuseProduct"), flatten(lightColor));
+    gl.uniform4fv(gl.getUniformLocation(program, "specularProduct"), flatten(lightColor));
 
-    // Restore original modelView and materials
+    // Draw light sphere
+    const lightSphereOffset = cylinderV + cubeV + teapotV;
+    gl.drawArrays(gl.TRIANGLES, lightSphereOffset, lightSphereV);
+
+    // Restore original matrices
     modelViewMatrix = currentModelView;
+    nMatrix = currentNMatrix;
     gl.uniformMatrix4fv(
       gl.getUniformLocation(program, "modelViewMatrix"),
       false,
       flatten(modelViewMatrix)
+    );
+    gl.uniformMatrix3fv(
+      gl.getUniformLocation(program, "normalMatrix"),
+      false,
+      nMatrix
     );
     updateLightProducts();
   }

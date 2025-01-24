@@ -12,17 +12,17 @@ window.onload = function init() {
   cylinderObj.Translate(-1, 0, 0);
   concatData(cylinderObj.Point, cylinderObj.Normal);
 
-  cubeObj = cube();
-  cubeObj.Rotate(45, [1, 1, 0]);
-  cubeObj.Scale(1, 1, 1);
-  cubeObj.Translate(1, 0, 0);
-  concatData(cubeObj.Point, cubeObj.Normal);
-
   teapotObj = teapot(10); // The number controls tessellation detail
   teapotObj.rotate(45, [1, 1, 0]);
   teapotObj.scale(0.4, 0.4, 0.4); // Teapot needs different scaling
   teapotObj.translate(0, -0.26, 0);
   concatData(teapotObj.TriangleVertices, teapotObj.Normals);
+
+  cubeObj = cube();
+  cubeObj.Rotate(45, [1, 1, 0]);
+  cubeObj.Scale(1, 1, 1);
+  cubeObj.Translate(1, 0, 0);
+  concatData(cubeObj.Point, cubeObj.Normal);
 
   // Add light source sphere to buffer
   lightSphereObj = sphere(4); // Create simpler sphere
@@ -32,6 +32,7 @@ window.onload = function init() {
   cylinderV = cylinderObj.Point.length;
   cubeV = cubeObj.Point.length;
   teapotV = teapotObj.TriangleVertices.length;
+
   totalV = pointsArray.length;
 
   // WebGL setups

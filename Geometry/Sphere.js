@@ -142,7 +142,5 @@ function drawSphere() {
     nMatrix = normalMatrix(modelViewMatrix);
     gl.uniformMatrix3fv(normalMatrixLoc, false, nMatrix);
 
-    const offset = cylinderV + teapotV + cubeV;
-  
     gl.drawArrays(gl.TRIANGLES, offset, sphereV);
   }
