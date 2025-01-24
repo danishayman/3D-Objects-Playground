@@ -229,3 +229,18 @@ function initTextures() {
         image.src = `textures/${name}.jpg`;
     });
 }
+
+
+function updateTexture() {
+    const objectSelect = document.getElementById('object-select');
+    const textureSelect = document.getElementById('texture-select');
+    
+    let currentMaterial;
+    switch(objectSelect.value) {
+        case 'cylinder': currentMaterial = cylinderMaterial; break;
+        case 'cube': currentMaterial = cubeMaterial; break;
+        case 'teapot': currentMaterial = teapotMaterial; break;
+    }
+    
+    currentMaterial.texture = textureSelect.value;
+}
