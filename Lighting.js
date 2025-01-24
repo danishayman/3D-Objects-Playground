@@ -31,6 +31,8 @@ function initLightControls() {
   diffuseColorPicker = document.getElementById("diffuse-color");
   specularColorPicker = document.getElementById("specular-color");
 
+  
+
   // Position sliders and values
   lightXSlider = document.getElementById("light-x");
   lightYSlider = document.getElementById("light-y");
@@ -65,6 +67,7 @@ function initLightControls() {
   spotlightDirY.addEventListener("input", updateSpotlightParams);
   spotlightDirZ.addEventListener("input", updateSpotlightParams);
   updateLightType();
+ 
 }
 
 function updateLightSource() {
