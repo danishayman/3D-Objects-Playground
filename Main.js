@@ -25,7 +25,7 @@ window.onload = function init() {
   cubeObj.Rotate(45, [1, 1, 0]);
   cubeObj.Scale(1, 1, 1);
   cubeObj.Translate(0, 0, 0);
-  concatData(cubeObj.Point, cubeObj.Normal);
+  concatData(cubeObj.Point, cubeObj.Normal, cubeObj.TexCoord);
 
   // Add light source sphere to buffer
   lightSphereObj = sphere(4); // Create simpler sphere
