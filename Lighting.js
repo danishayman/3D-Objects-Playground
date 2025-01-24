@@ -9,9 +9,7 @@ var lightAmbient = vec4(ambient, ambient, ambient, 1.0);
 var lightDiffuse = vec4(diffuse, diffuse, diffuse, 1.0);
 var lightSpecular = vec4(specular, specular, specular, 1.0);
 
-var materialAmbient = vec4(0.5, 0.5, 1.0, 1.0);
-var materialDiffuse = vec4(0.0, 0.9, 1.0, 1.0);
-var materialSpecular = vec4(1.0, 1.0, 1.0, 1.0);
+
 var lightSourceSelect, lightToggle, lightTypeSelect;
 var ambientColorPicker, diffuseColorPicker, specularColorPicker;
 var lightXSlider, lightYSlider, lightZSlider;

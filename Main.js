@@ -152,24 +152,6 @@ function render() {
   projectionMatrix = ortho(-4, 4, -2.25, 2.25, -5, 5);
   gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
 
-  // Compute the ambient, diffuse, and specular values
-  ambientProduct = mult(lightAmbient, materialAmbient);
-  diffuseProduct = mult(lightDiffuse, materialDiffuse);
-  specularProduct = mult(lightSpecular, materialSpecular);
-  gl.uniform4fv(
-    gl.getUniformLocation(program, "ambientProduct"),
-    flatten(ambientProduct)
-  );
-  gl.uniform4fv(
-    gl.getUniformLocation(program, "diffuseProduct"),
-    flatten(diffuseProduct)
-  );
-  gl.uniform4fv(
-    gl.getUniformLocation(program, "specularProduct"),
-    flatten(specularProduct)
-  );
-  gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
-  gl.uniform1f(gl.getUniformLocation(program, "shininess"), shininess);
 
   animUpdate();
 }

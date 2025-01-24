@@ -1,4 +1,14 @@
 // Material properties for different objects
+
+
+
+var materialAmbient = vec4(0.5, 0.5, 1.0, 1.0);
+var materialDiffuse = vec4(0.0, 0.9, 1.0, 1.0);
+var materialSpecular = vec4(1.0, 1.0, 1.0, 1.0);
+
+
+
+
 var cylinderMaterial = {
     ambient: vec4(0.5, 0.5, 1.0, 1.0),
     diffuse: vec4(0.0, 0.9, 1.0, 1.0),
@@ -98,8 +108,6 @@ function updateMaterialColors() {
     currentMaterial.diffuse = hexToRGB(materialDiffusePicker.value);
     currentMaterial.specular = hexToRGB(materialSpecularPicker.value);
 
-    // Update material properties for ONLY the selected object
-    updateObjectMaterials(objectSelect.value);
 }
 
 function updateMaterialCoefficients() {
@@ -131,45 +139,6 @@ function updateMaterialCoefficients() {
     document.getElementById('specular-coef-value').textContent = specularCoef.value;
     document.getElementById('shininess-value').textContent = shininessSlider.value;
 
-    // Update material properties for ONLY the selected object
-    updateObjectMaterials(objectSelect.value);
-}
-
-function updateObjectMaterials(selectedObject) {
-    let materialAmbient, materialDiffuse, materialSpecular, objectShininess;
-
-    // Determine current material based on selected object
-    switch(selectedObject) {
-        case 'cylinder':
-            materialAmbient = cylinderMaterial.ambient;
-            materialDiffuse = cylinderMaterial.diffuse;
-            materialSpecular = cylinderMaterial.specular;
-            objectShininess = cylinderMaterial.shininess;
-            break;
-        case 'cube':
-            materialAmbient = cubeMaterial.ambient;
-            materialDiffuse = cubeMaterial.diffuse;
-            materialSpecular = cubeMaterial.specular;
-            objectShininess = cubeMaterial.shininess;
-            break;
-        case 'teapot':
-            materialAmbient = teapotMaterial.ambient;
-            materialDiffuse = teapotMaterial.diffuse;
-            materialSpecular = teapotMaterial.specular;
-            objectShininess = teapotMaterial.shininess;
-            break;
-    }
-
-    // Use the current object's material properties
-    materialAmbient = mult(lightAmbient, materialAmbient);
-    materialDiffuse = mult(lightDiffuse, materialDiffuse);
-    materialSpecular = mult(lightSpecular, materialSpecular);
-
-    // Update shader uniforms for the selected object
-    gl.uniform4fv(gl.getUniformLocation(program, "ambientProduct"), flatten(materialAmbient));
-    gl.uniform4fv(gl.getUniformLocation(program, "diffuseProduct"), flatten(materialDiffuse));
-    gl.uniform4fv(gl.getUniformLocation(program, "specularProduct"), flatten(materialSpecular));
-    gl.uniform1f(gl.getUniformLocation(program, "shininess"), objectShininess);
 }
 
 // Utility function to convert RGB vec4 to hex
