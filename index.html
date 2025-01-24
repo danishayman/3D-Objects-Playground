@@ -220,6 +220,15 @@
       <input id="cube-btn" class="anim-btn" type="button" value="Toggle Cube" />
 
       <!-- ======================================== LIGHT SOURCE SELECTION ======================================== -->
+
+
+      <!-- Light Source Toggle -->
+      <div class="param-panel horizontal-align mg-top-bottom">
+        <div class="checkText">Light Source</div>
+        <input type="checkbox" id="light-toggle" class="checkRadio" checked />
+      </div>
+
+      
       <div class="param-panel horizontal-align mg-top-bottom">
         <div class="checkText">Light Source:</div>
         <select id="light-source" class="light-select">
@@ -229,6 +238,11 @@
       </div>
 
       <!-- ======================================== SPOTLIGHT CONTROLS ======================================== -->
+
+
+
+
+
       <div class="param-panel vertical-align mg-top-bottom">
         <div class="checkText">Spotlight Settings</div>
 
@@ -239,7 +253,7 @@
             type="range"
             id="spotlight-cutoff"
             min="0"
-            max="90"
+            max="360"
             value="45"
             step="1"
           />
@@ -303,11 +317,7 @@
         </select>
       </div>
 
-      <!-- Light Source Toggle -->
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Light Source</div>
-        <input type="checkbox" id="light-toggle" class="checkRadio" checked />
-      </div>
+
 
       <!-- ======================================== LIGHT COLOR CONTROLS ======================================== -->
       <div class="param-panel vertical-align mg-top-bottom">

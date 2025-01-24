@@ -12,8 +12,7 @@ function teapot(num) {
     
     if(!num) numDivisions = 3;
     else numDivisions = num;
-    
-    var numTeapotVertices = 306;
+
     
     var vertices = [
     

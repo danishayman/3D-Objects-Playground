@@ -25,7 +25,7 @@ window.onload = function init() {
   concatData(teapotObj.TriangleVertices, teapotObj.Normals);
 
   // Add light source sphere to buffer
-  lightSphereObj = sphere(3); // Create simpler sphere
+  lightSphereObj = sphere(4); // Create simpler sphere
   concatData(lightSphereObj.Point, lightSphereObj.Normal);
 
   lightSphereV = lightSphereObj.Point.length;
@@ -164,9 +164,11 @@ function animUpdate() {
   
 
   drawCylinder();
-  drawCube();
   drawTeapot();
+  drawCube();
   drawLightSource();
+
+
 
   // Schedule the next frame for a looped animation (60fps)
   animFrame = window.requestAnimationFrame(animUpdate);

@@ -206,7 +206,7 @@ function cylinder(numSlices, numStacks, caps) {
 
 // Draw the first shape (cylinder)
 function drawCylinder() {
-    const offset = 0;
+    
     // Increment the rotation value if the animation is enabled
     if (cylinderFlag) {
       cylinderTheta[cylinderAxis] += 1;
@@ -232,7 +232,10 @@ function drawCylinder() {
     // Pass the normal matrix from JavaScript to the GPU for use in shader
     nMatrix = normalMatrix(modelViewMatrix);
     gl.uniformMatrix3fv(normalMatrixLoc, false, nMatrix);
-  
+
+
+
+    const offset = 0;
     // Draw the primitive from index 0 to the last index of shape 1
     gl.drawArrays(gl.TRIANGLES, offset, cylinderV);
   }
