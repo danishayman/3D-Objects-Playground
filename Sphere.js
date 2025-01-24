@@ -141,6 +141,8 @@ function drawSphere() {
     // Pass the normal matrix from JavaScript to the GPU for use in shader
     nMatrix = normalMatrix(modelViewMatrix);
     gl.uniformMatrix3fv(normalMatrixLoc, false, nMatrix);
+
+    const offset = cylinderV + cubeV; + teapotV;
   
-    gl.drawArrays(gl.TRIANGLES, cylinderV + cubeV, sphereV);
+    gl.drawArrays(gl.TRIANGLES, offset, sphereV);
   }

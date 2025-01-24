@@ -161,10 +161,10 @@ function render() {
 function animUpdate() {
   // Clear the color buffer and the depth buffer before rendering a new frame
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  
 
   drawCylinder();
   drawCube();
-  drawSphere();
   drawTeapot();
   drawLightSource();
 

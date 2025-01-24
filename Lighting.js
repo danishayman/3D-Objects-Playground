@@ -185,7 +185,7 @@ function updateLightProducts() {
 }
 
 function drawLightSource() {
-  // Only draw if it's a point light (w component is 1.0)
+  // Only draw if it's a point light
   if (lightPos[3] === 1.0) {
     // Save current modelView matrix
     var currentModelView = modelViewMatrix;
