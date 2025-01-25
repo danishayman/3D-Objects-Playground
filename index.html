@@ -23,7 +23,7 @@
     <script type="text/javascript" src="Material.js"></script>
     <script type="text/javascript" src="Camera.js"></script>
     <script type="text/javascript" src="ConfigureWebGL.js"></script>
-  
+
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <!-- Define the vertex shader -->
@@ -231,14 +231,12 @@
 
       <!-- ======================================== LIGHT SOURCE SELECTION ======================================== -->
 
-
       <!-- Light Source Toggle -->
       <div class="param-panel horizontal-align mg-top-bottom">
         <div class="checkText">Light Source</div>
         <input type="checkbox" id="light-toggle" class="checkRadio" checked />
       </div>
 
-      
       <div class="param-panel horizontal-align mg-top-bottom">
         <div class="checkText">Light Source:</div>
         <select id="light-source" class="light-select">
@@ -248,10 +246,6 @@
       </div>
 
       <!-- ======================================== SPOTLIGHT CONTROLS ======================================== -->
-
-
-
-
 
       <div class="param-panel vertical-align mg-top-bottom">
         <div class="checkText">Spotlight Settings</div>
@@ -326,8 +320,6 @@
           <option value="directional">Directional</option>
         </select>
       </div>
-
-
 
       <!-- ======================================== LIGHT COLOR CONTROLS ======================================== -->
       <div class="param-panel vertical-align mg-top-bottom">
@@ -498,8 +490,8 @@
             <input
               type="range"
               id="eye-x"
-              min="-10"
-              max="10"
+              min="-5"
+              max="5"
               value="0"
               step="0.1"
             />
@@ -510,8 +502,8 @@
             <input
               type="range"
               id="eye-y"
-              min="-10"
-              max="10"
+              min="-5"
+              max="5"
               value="0"
               step="0.1"
             />
@@ -522,8 +514,8 @@
             <input
               type="range"
               id="eye-z"
-              min="-10"
-              max="10"
+              min="-5"
+              max="5"
               value="5"
               step="0.1"
             />
@@ -531,43 +523,89 @@
           </div>
         </div>
 
-        <!-- Look At Point -->
+        <!-- Center  -->
         <div class="look-at vertical-align">
           <div class="slider-control horizontal-align">
-            <label>Look At X:</label>
+            <label>Center X:</label>
             <input
               type="range"
               id="at-x"
-              min="-10"
-              max="10"
+              min="-5"
+              max="5"
               value="0"
               step="0.1"
             />
             <span id="at-x-value">0.0</span>
           </div>
           <div class="slider-control horizontal-align">
-            <label>Look At Y:</label>
+            <label>Center Y:</label>
             <input
               type="range"
               id="at-y"
-              min="-10"
-              max="10"
+              min="-5"
+              max="5"
               value="0"
               step="0.1"
             />
             <span id="at-y-value">0.0</span>
           </div>
           <div class="slider-control horizontal-align">
-            <label>Look At Z:</label>
+            <label>Center Z:</label>
             <input
               type="range"
               id="at-z"
-              min="-10"
-              max="10"
+              min="-5"
+              max="5"
               value="0"
               step="0.1"
             />
             <span id="at-z-value">0.0</span>
+          </div>
+        </div>
+
+        <!-- Up Vector -->
+        <div class="up-vector vertical-align">
+
+          <!-- Up X -->
+          <div class="slider-control horizontal-align">
+            <label>Up X:</label>
+            <input
+              type="range"
+              id="up-x"
+              min="-1"
+              max="1"
+              value="0"
+              step="0.1"
+            />
+            <span id="up-x-value">0.0</span>
+          </div>
+
+          <!-- Up Y -->
+          <div class="slider-control horizontal-align">
+            <label>Up Y:</label>
+            <input
+              type="range"
+              id="up-y"
+              min="-1"
+              max="1"
+              value="1"
+              step="0.1"
+            />
+            <span id="up-y-value">1.0</span>
+          </div>
+
+          <!-- Up Z -->
+          <div class="slider-control horizontal-align">
+            <label>Up Z:</label>
+            <input
+              type="range"
+              id="up-z"
+              min="-1"
+              max="1"
+              value="0"
+              step="0.1"
+            />
+            <span id="up-z-value">0.0</span>
           </div>
         </div>
       </div>

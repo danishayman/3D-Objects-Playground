@@ -22,6 +22,9 @@ function setupCameraControls() {
     const atX = document.getElementById('at-x');
     const atY = document.getElementById('at-y');
     const atZ = document.getElementById('at-z');
+    const upX = document.getElementById('up-x');
+    const upY = document.getElementById('up-y');
+    const upZ = document.getElementById('up-z');
 
     // Initialize camera from slider values
     camera.eye = vec3(
@@ -34,8 +37,15 @@ function setupCameraControls() {
         parseFloat(atY.value),
         parseFloat(atZ.value)
     );
+    camera.up = vec3(
+        parseFloat(upX.value),
+        parseFloat(upY.value),
+        parseFloat(upZ.value)
+    );
+
 
     // Add event listeners
+    // Eye position controls
     eyeX.addEventListener('input', () => {
         camera.eye[0] = parseFloat(eyeX.value);
         updateCameraView();
@@ -48,6 +58,9 @@ function setupCameraControls() {
         camera.eye[2] = parseFloat(eyeZ.value);
         updateCameraView();
     });
+
+
+    // At position controls
     atX.addEventListener('input', () => {
         camera.at[0] = parseFloat(atX.value);
         updateCameraView();
@@ -58,6 +71,21 @@ function setupCameraControls() {
     });
     atZ.addEventListener('input', () => {
         camera.at[2] = parseFloat(atZ.value);
+        updateCameraView();
+    });
+
+
+    // Up vector controls
+    upX.addEventListener('input', () => {
+        camera.up[0] = parseFloat(upX.value);
+        updateCameraView();
+    });
+    upY.addEventListener('input', () => {
+        camera.up[1] = parseFloat(upY.value);
+        updateCameraView();
+    });
+    upZ.addEventListener('input', () => {
+        camera.up[2] = parseFloat(upZ.value);
         updateCameraView();
     });
 
@@ -88,5 +116,16 @@ function setupCameraControlListeners() {
     });
     document.getElementById('at-z').addEventListener('input', function() {
       document.getElementById('at-z-value').textContent = this.value;
+    });
+
+    // Up vector controls
+    document.getElementById('up-x').addEventListener('input', function() {
+      document.getElementById('up-x-value').textContent = this.value;
+    });
+    document.getElementById('up-y').addEventListener('input', function() {
+      document.getElementById('up-y-value').textContent = this.value;
+    });
+    document.getElementById('up-z').addEventListener('input', function() {
+      document.getElementById('up-z-value').textContent = this.value;
     });
   }
