@@ -794,7 +794,8 @@ function drawTeapot() {
 
 
   // Set up model-view matrix with transformations
-  modelViewMatrix = mat4();
+  modelViewMatrix = camera.viewMatrix;
+  modelViewMatrix = mult(modelViewMatrix, translate(0, 0, 1));
   modelViewMatrix = mult(modelViewMatrix, rotate(teapotTheta[X_AXIS], [1, 0, 0]));
   modelViewMatrix = mult(modelViewMatrix, rotate(teapotTheta[Y_AXIS], [0, 1, 0]));
   modelViewMatrix = mult(modelViewMatrix, rotate(teapotTheta[Z_AXIS], [0, 0, 1]));

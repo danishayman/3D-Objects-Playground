@@ -125,8 +125,8 @@ function drawCube() {
     }
   
     // Pass the model view matrix from JavaScript to the GPU for use in shader
-    modelViewMatrix = mat4();
-    modelViewMatrix = mult(modelViewMatrix, translate(2.5, 0, 0));
+    modelViewMatrix = camera.viewMatrix;
+    modelViewMatrix = mult(modelViewMatrix, translate(2.5, 0, 1));
     modelViewMatrix = mult(modelViewMatrix, rotate(cubeTheta[X_AXIS], [1, 0, 0]));
     modelViewMatrix = mult(modelViewMatrix, rotate(cubeTheta[Y_AXIS], [0, 1, 0]));
     modelViewMatrix = mult(modelViewMatrix, rotate(cubeTheta[Z_AXIS], [0, 0, 1]));

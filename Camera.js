@@ -63,3 +63,30 @@ function setupCameraControls() {
 
     updateCameraView();
 }
+
+
+
+// Camera control value updaters
+function setupCameraControlListeners() {
+    // Eye position controls
+    document.getElementById('eye-x').addEventListener('input', function() {
+      document.getElementById('eye-x-value').textContent = this.value;
+    });
+    document.getElementById('eye-y').addEventListener('input', function() {
+      document.getElementById('eye-y-value').textContent = this.value;
+    });
+    document.getElementById('eye-z').addEventListener('input', function() {
+      document.getElementById('eye-z-value').textContent = this.value;
+    });
+  
+    // Look-at position controls
+    document.getElementById('at-x').addEventListener('input', function() {
+      document.getElementById('at-x-value').textContent = this.value;
+    });
+    document.getElementById('at-y').addEventListener('input', function() {
+      document.getElementById('at-y-value').textContent = this.value;
+    });
+    document.getElementById('at-z').addEventListener('input', function() {
+      document.getElementById('at-z-value').textContent = this.value;
+    });
+  }

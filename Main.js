@@ -51,6 +51,8 @@ window.onload = function init() {
   // Initial updates
   updateLightProducts();
   updateLightSource();
+
+  setupCameraControls();
 };
 
 // Retrieve all elements from HTML and store in the corresponding variables
@@ -133,6 +135,8 @@ function getUIElement() {
     teapotY.disabled = teapotFlag;
     teapotZ.disabled = teapotFlag;
   };
+
+  setupCameraControlListeners();
 }
 
 
@@ -154,6 +158,9 @@ function render() {
   // ortho(left, right, bottom, top, near, far)
   projectionMatrix = ortho(-4, 4, -2.25, 2.25, -5, 5);
   gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
+  
+  const aspect = canvas.width / canvas.height;
+  projectionMatrix = perspective(60, aspect, 0.1, 100.0);
 
 
   animUpdate();
