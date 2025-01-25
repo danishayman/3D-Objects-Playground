@@ -34,32 +34,29 @@ var cylinderObj,
   cylinderFlag = false,
   cubeFlag = false,
   sphereFlag = false;
-  teapotFlag = false;
+teapotFlag = false;
 var cylinderTheta = [0, 0, 0],
   cubeTheta = [0, 0, 0],
   sphereTheta = [0, 0, 0],
   teapotTheta = [0, 0, 0];
-  animFrame = 0;
+animFrame = 0;
 var pointsArray = [],
   normalsArray = [],
   cylinderV,
   cubeV,
   sphereV,
   totalV;
-  
-  var lightSphereObj;  // Sphere object for the light
-  var lightSphereV;
 
+var lightSphereObj; // Sphere object for the light
+var lightSphereV;
 
-  // Add these variables at the top with other global variables
+// Add these variables at the top with other global variables
 var teapotRotating = false;
 var currentTeapotAngle = 0;
 var teapotAxis = X_AXIS; // Default axis
-
 
 var ambientProductLoc, diffuseProductLoc, specularProductLoc, shininessLoc;
 
 let texCoordsArray = [];
 
 var uTextureLoc, uUseTextureLoc;
-

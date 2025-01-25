@@ -113,7 +113,6 @@ function sphere(subdivNum) {
   return sphereData;
 }
 
-
 //Draw the third shape (sphere)
 function drawSphere() {
   // Increment the rotation value if the animation is enabled

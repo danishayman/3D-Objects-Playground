@@ -9,7 +9,6 @@ var lightAmbient = vec4(ambient, ambient, ambient, 1.0);
 var lightDiffuse = vec4(diffuse, diffuse, diffuse, 1.0);
 var lightSpecular = vec4(specular, specular, specular, 1.0);
 
-
 var lightSourceSelect, lightToggle, lightTypeSelect;
 var ambientColorPicker, diffuseColorPicker, specularColorPicker;
 var lightXSlider, lightYSlider, lightZSlider;
@@ -55,7 +54,6 @@ function initLightControls() {
   lightYSlider.addEventListener("input", updateLightPosition);
   lightZSlider.addEventListener("input", updateLightPosition);
 
-
   spotlightCutoff.addEventListener("input", updateSpotlightParams);
   spotlightDirX.addEventListener("input", updateSpotlightParams);
   spotlightDirY.addEventListener("input", updateSpotlightParams);
@@ -64,32 +62,37 @@ function initLightControls() {
 }
 
 function updateLightSource() {
-    const isSpotlight = lightSourceSelect.value === "spot";
-    
-    // Force positional light when using spotlight
-    if(isSpotlight) {
-        lightTypeSelect.value = "positional";
-        lightPos[3] = 1.0;
-        lightTypeSelect.disabled = true;
-    } else {
-        lightTypeSelect.disabled = false;
-    }
-    
-    // Update shader uniforms
-    gl.uniform1i(gl.getUniformLocation(program, "isSpotlight"), isSpotlight ? 1 : 0);
-    gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
-    
-    // Update spotlight controls visibility
-    const spotlightElements = document.querySelectorAll(".spotlight-direction, .spotlight-control");
-    spotlightElements.forEach(elem => {
-        elem.style.pointerEvents = isSpotlight ? "auto" : "none";
-        elem.style.opacity = isSpotlight ? "1" : "0.5";
-    });
-    
-    // Initialize spotlight parameters
-    if(isSpotlight) {
-        updateSpotlightParams();
-    }
+  const isSpotlight = lightSourceSelect.value === "spot";
+
+  // Force positional light when using spotlight
+  if (isSpotlight) {
+    lightTypeSelect.value = "positional";
+    lightPos[3] = 1.0;
+    lightTypeSelect.disabled = true;
+  } else {
+    lightTypeSelect.disabled = false;
+  }
+
+  // Update shader uniforms
+  gl.uniform1i(
+    gl.getUniformLocation(program, "isSpotlight"),
+    isSpotlight ? 1 : 0
+  );
+  gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
+
+  // Update spotlight controls visibility
+  const spotlightElements = document.querySelectorAll(
+    ".spotlight-direction, .spotlight-control"
+  );
+  spotlightElements.forEach((elem) => {
+    elem.style.pointerEvents = isSpotlight ? "auto" : "none";
+    elem.style.opacity = isSpotlight ? "1" : "0.5";
+  });
+
+  // Initialize spotlight parameters
+  if (isSpotlight) {
+    updateSpotlightParams();
+  }
 }
 
 function toggleLight(event) {
@@ -108,11 +111,11 @@ function toggleLight(event) {
 }
 
 function updateLightType() {
-    lightPos[3] = lightTypeSelect.value === "directional" ? 0.0 : 1.0;
-    gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
-    
-    // Redraw light source if changing to positional
-    if(lightPos[3] === 1.0) drawLightSource();
+  lightPos[3] = lightTypeSelect.value === "directional" ? 0.0 : 1.0;
+  gl.uniform4fv(gl.getUniformLocation(program, "lightPos"), flatten(lightPos));
+
+  // Redraw light source if changing to positional
+  if (lightPos[3] === 1.0) drawLightSource();
 }
 
 function hexToRGB(hex) {
@@ -191,12 +194,15 @@ function drawLightSource() {
 
     // Transform light source
     modelViewMatrix = mat4();
-    modelViewMatrix = mult(modelViewMatrix, translate(lightPos[0], lightPos[1], lightPos[2]));
+    modelViewMatrix = mult(
+      modelViewMatrix,
+      translate(lightPos[0], lightPos[1], lightPos[2])
+    );
     modelViewMatrix = mult(modelViewMatrix, scale(0.07, 0.07, 0.07)); // Increased scale for visibility
 
     // Calculate normal matrix
     nMatrix = normalMatrix(modelViewMatrix);
-    
+
     // Update shader uniforms
     gl.uniformMatrix4fv(
       gl.getUniformLocation(program, "modelViewMatrix"),
@@ -211,9 +217,18 @@ function drawLightSource() {
 
     // Set light color (full white)
     const lightColor = vec4(0.2, 0.2, 0.2, 1.0);
-    gl.uniform4fv(gl.getUniformLocation(program, "ambientProduct"), flatten(lightColor));
-    gl.uniform4fv(gl.getUniformLocation(program, "diffuseProduct"), flatten(lightColor));
-    gl.uniform4fv(gl.getUniformLocation(program, "specularProduct"), flatten(lightColor));
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "ambientProduct"),
+      flatten(lightColor)
+    );
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "diffuseProduct"),
+      flatten(lightColor)
+    );
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "specularProduct"),
+      flatten(lightColor)
+    );
 
     // Draw light sphere
     const lightSphereOffset = cylinderV + cubeV + teapotV;
@@ -233,25 +248,30 @@ function drawLightSource() {
       nMatrix
     );
     updateLightProducts();
-  
   }
 }
 
-
 function updateSpotlightParams() {
-  
-    const cutoffAngle = parseFloat(spotlightCutoff.value);
-    gl.uniform1f(gl.getUniformLocation(program, "spotlightCutoff"), cutoffAngle);
-    
-    const dirX = parseFloat(spotlightDirX.value);
-    const dirY = parseFloat(spotlightDirY.value);
-    const dirZ = parseFloat(spotlightDirZ.value);
-    const spotlightDirection = vec3(dirX, dirY, dirZ);
-    gl.uniform3fv(gl.getUniformLocation(program, "spotlightDir"), flatten(spotlightDirection));
-    
-    // Update displayed values
-    document.getElementById("spotlight-cutoff-value").textContent = `${cutoffAngle}°`;
-    document.getElementById("spotlight-dir-x-value").textContent = dirX.toFixed(1);
-    document.getElementById("spotlight-dir-y-value").textContent = dirY.toFixed(1);
-    document.getElementById("spotlight-dir-z-value").textContent = dirZ.toFixed(1);
+  const cutoffAngle = parseFloat(spotlightCutoff.value);
+  gl.uniform1f(gl.getUniformLocation(program, "spotlightCutoff"), cutoffAngle);
+
+  const dirX = parseFloat(spotlightDirX.value);
+  const dirY = parseFloat(spotlightDirY.value);
+  const dirZ = parseFloat(spotlightDirZ.value);
+  const spotlightDirection = vec3(dirX, dirY, dirZ);
+  gl.uniform3fv(
+    gl.getUniformLocation(program, "spotlightDir"),
+    flatten(spotlightDirection)
+  );
+
+  // Update displayed values
+  document.getElementById(
+    "spotlight-cutoff-value"
+  ).textContent = `${cutoffAngle}°`;
+  document.getElementById("spotlight-dir-x-value").textContent =
+    dirX.toFixed(1);
+  document.getElementById("spotlight-dir-y-value").textContent =
+    dirY.toFixed(1);
+  document.getElementById("spotlight-dir-z-value").textContent =
+    dirZ.toFixed(1);
 }

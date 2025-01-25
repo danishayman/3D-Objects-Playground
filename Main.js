@@ -1,4 +1,3 @@
-
 /*-----------------------------------------------------------------------------------*/
 // WebGL Utilities
 /*-----------------------------------------------------------------------------------*/
@@ -13,13 +12,11 @@ window.onload = function init() {
   cylinderObj.Translate(0, 0, 0);
   concatData(cylinderObj.Point, cylinderObj.Normal);
 
-
   teapotObj = teapot(10); // The number controls tessellation detail
   teapotObj.rotate(45, [1, 1, 0]);
   teapotObj.scale(0.4, 0.4, 0.4); // Teapot needs different scaling
   teapotObj.translate(0, -0.26, 0);
   concatData(teapotObj.TriangleVertices, teapotObj.Normals);
-
 
   cubeObj = cube();
   cubeObj.Rotate(45, [1, 1, 0]);
@@ -47,7 +44,7 @@ window.onload = function init() {
 
   // Initialize textures
   initTextures();
-    
+
   // Initial updates
   updateLightProducts();
   updateLightSource();
@@ -93,7 +90,6 @@ function getUIElement() {
     cylinderY.disabled = cylinderFlag;
     cylinderZ.disabled = cylinderFlag;
   };
-  
 
   cubeX.onchange = function () {
     if (cubeX.checked) cubeAxis = X_AXIS;
@@ -139,8 +135,6 @@ function getUIElement() {
   setupCameraControlListeners();
 }
 
-
-
 // Render the graphics for viewing
 function render() {
   // Cancel the animation frame before performing any graphic rendering
@@ -158,10 +152,9 @@ function render() {
   // ortho(left, right, bottom, top, near, far)
   projectionMatrix = ortho(-4, 4, -2.25, 2.25, -5, 5);
   gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
-  
+
   const aspect = canvas.width / canvas.height;
   projectionMatrix = perspective(60, aspect, 0.1, 100.0);
-
 
   animUpdate();
 }
@@ -170,14 +163,11 @@ function render() {
 function animUpdate() {
   // Clear the color buffer and the depth buffer before rendering a new frame
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-  
 
   drawCylinder();
   drawTeapot();
   drawCube();
   drawLightSource();
-
-
 
   // Schedule the next frame for a looped animation (60fps)
   animFrame = window.requestAnimationFrame(animUpdate);

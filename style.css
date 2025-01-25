@@ -164,22 +164,22 @@ body {
 }
 
 .anim-btn {
-	margin: 10px 0px 5px 0px;
-	width: 270px;
-	height: 70px;
-	background: #0a97b0;
-	border: 5px solid #2a3335;
-	border-radius: 10px;
-	color: #ffffff;
-	text-align: center;
-	font-weight: bold;
-	font-size: 20px;
-	outline: none;
-	transition: all 0.3s ease;
+  margin: 10px 0px 5px 0px;
+  width: 270px;
+  height: 70px;
+  background: #0a97b0;
+  border: 5px solid #2a3335;
+  border-radius: 10px;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
 .anim-btn:hover {
-	transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 .anim-btn:active {
