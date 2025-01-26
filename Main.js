@@ -38,17 +38,11 @@ window.onload = function init() {
   getUIElement();
   configWebGL();
   render();
-  // Initialize light controls
   initLightControls();
   initMaterialControls();
-
-  // Initial updates
   updateLightProducts();
   updateLightSource();
-
-  // Inside init()
-  initShading(); // Initialize shading data
-
+  initShading();
   setupCameraControls();
 };
 
@@ -70,8 +64,8 @@ function getUIElement() {
   teapotY = document.getElementById("teapot-y");
   teapotZ = document.getElementById("teapot-z");
   teapotBtn = document.getElementById("teapot-btn");
-  const shadingModeSelect = document.getElementById('shading-mode');
-  shadingModeSelect.addEventListener('change', function(e) {
+  const shadingModeSelect = document.getElementById("shading-mode");
+  shadingModeSelect.addEventListener("change", function (e) {
     toggleShadingMode(e.target.value);
   });
 
@@ -153,7 +147,6 @@ function render() {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   // Pass the projection matrix from JavaScript to the GPU for use in shader
-  // ortho(left, right, bottom, top, near, far)
   projectionMatrix = ortho(-4, 4, -2.25, 2.25, -5, 5);
   gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
 

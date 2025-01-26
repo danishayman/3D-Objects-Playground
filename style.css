@@ -36,15 +36,9 @@ body {
   background-color: #ffffff;
   padding: 25px;
   border-radius: 15px;
-  box-shadow: 
-    inset #009688 0 0 0 5px,
-    inset #059c8e 0 0 0 1px,
-    inset #0cab9c 0 0 0 10px,
-    inset #1fbdae 0 0 0 11px,
-    inset #8ce9ff 0 0 0 16px,
-    inset #48e4d6 0 0 0 17px,
-    inset #e5f9f7 0 0 0 21px,
-    inset #bfecf7 0 0 0 22px;
+  box-shadow: inset #009688 0 0 0 5px, inset #059c8e 0 0 0 1px,
+    inset #0cab9c 0 0 0 10px, inset #1fbdae 0 0 0 11px, inset #8ce9ff 0 0 0 16px,
+    inset #48e4d6 0 0 0 17px, inset #e5f9f7 0 0 0 21px, inset #bfecf7 0 0 0 22px;
 }
 
 /* Control panel layout */
@@ -58,10 +52,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   padding: 20px;
-  box-shadow: 
-      0 0 0 5px #009688,
-      0 0 0 10px #0cab9c,
-      0 0 0 15px #8ce9ff;
+  box-shadow: 0 0 0 5px #009688, 0 0 0 10px #0cab9c, 0 0 0 15px #8ce9ff;
   box-sizing: border-box;
 }
 
@@ -244,9 +235,8 @@ span[id$="-value"] {
   text-align: right;
   white-space: nowrap; /* Prevent text wrapping */
   overflow: visible; /* Ensure content does not get clipped */
-
-
-}.direction-control {
+}
+.direction-control {
   display: flex;
   align-items: center;
   justify-content: space-between;

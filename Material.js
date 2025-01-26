@@ -44,7 +44,6 @@ function initMaterialControls() {
   const materialAmbientPicker = document.getElementById("material-ambient");
   const materialDiffusePicker = document.getElementById("material-diffuse");
   const materialSpecularPicker = document.getElementById("material-specular");
-  const textureSelect = document.getElementById("texture-select");
   ambientCoef = document.getElementById("ambient-coef");
   diffuseCoef = document.getElementById("diffuse-coef");
   specularCoef = document.getElementById("specular-coef");
@@ -236,8 +235,6 @@ function updateShininess() {
   document.getElementById("shininess-value").textContent =
     shininessSlider.value;
 }
-
-
 
 function updateTexture() {
   const objectSelect = document.getElementById("object-select");
