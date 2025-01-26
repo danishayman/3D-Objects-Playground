@@ -42,9 +42,6 @@ window.onload = function init() {
   initLightControls();
   initMaterialControls();
 
-  // Initialize textures
-  initTextures();
-
   // Initial updates
   updateLightProducts();
   updateLightSource();

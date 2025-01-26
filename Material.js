@@ -49,7 +49,6 @@ function initMaterialControls() {
   diffuseCoef = document.getElementById("diffuse-coef");
   specularCoef = document.getElementById("specular-coef");
   shininessSlider = document.getElementById("shininess");
-  textureSelect.addEventListener("change", updateTexture);
 
   // Initial material color setup
   updateMaterialColorPickers();
@@ -238,29 +237,7 @@ function updateShininess() {
     shininessSlider.value;
 }
 
-const textures = {};
-function initTextures() {
-  const textureList = ["wood", "metal", "marble"];
-  textureList.forEach((name) => {
-    textures[name] = gl.createTexture();
-    const image = new Image();
-    image.onload = () => {
-      gl.bindTexture(gl.TEXTURE_2D, textures[name]);
-      gl.texImage2D(
-        gl.TEXTURE_2D,
-        0,
-        gl.RGBA,
-        gl.RGBA,
-        gl.UNSIGNED_BYTE,
-        image
-      );
-      gl.generateMipmap(gl.TEXTURE_2D);
-    };
-    image.src = `Textures/${name}.jpg`;
-  });
 
-  console.log("Textures loaded");
-}
 
 function updateTexture() {
   const objectSelect = document.getElementById("object-select");
