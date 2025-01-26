@@ -154,7 +154,8 @@ function render() {
   gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
 
   const aspect = canvas.width / canvas.height;
-  projectionMatrix = perspective(60, aspect, 0.1, 100.0);
+  projectionMatrix = perspective(60, aspect, 0.1, 1000.0);
+  gl.uniformMatrix4fv(projectionMatrixLoc, false, flatten(projectionMatrix));
 
   animUpdate();
 }
