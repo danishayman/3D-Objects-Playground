@@ -6,7 +6,7 @@
 window.onload = function init() {
   // Primitive (geometric shape) initialization
   // Shape 1 = Cylinder, Shape 2 = Cube
-  cylinderObj = cylinder(200, 3, true);
+  cylinderObj = cylinder(100, 3, true);
   cylinderObj.Rotate(45, [1, 1, 0]);
   cylinderObj.Scale(1.2, 1.2, 1.2);
   cylinderObj.Translate(0, 0, 0);
