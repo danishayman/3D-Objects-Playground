@@ -49,6 +49,9 @@ window.onload = function init() {
   updateLightProducts();
   updateLightSource();
 
+  // Inside init()
+  initShading(); // Initialize shading data
+
   setupCameraControls();
 };
 
@@ -70,6 +73,10 @@ function getUIElement() {
   teapotY = document.getElementById("teapot-y");
   teapotZ = document.getElementById("teapot-z");
   teapotBtn = document.getElementById("teapot-btn");
+  const shadingModeSelect = document.getElementById('shading-mode');
+  shadingModeSelect.addEventListener('change', function(e) {
+    toggleShadingMode(e.target.value);
+  });
 
   cylinderX.onchange = function () {
     if (cylinderX.checked) cylinderAxis = X_AXIS;
