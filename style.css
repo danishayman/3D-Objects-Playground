@@ -66,6 +66,10 @@ body {
   padding: 20px;
   box-shadow: 0 0 0 5px #009688, 0 0 0 10px #0cab9c, 0 0 0 15px #8ce9ff;
   box-sizing: border-box;
+  align-items: center;
+  font-family: "Robotomono", monospace;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .panel > * {
@@ -111,17 +115,14 @@ body {
 /* Control section styling */
 .param-panel {
   width: 100%;
-  background-color: #f8f9fa;
   padding: 15px;
   border-radius: 10px;
   margin: 10px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Text styling */
 .checkText {
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 1000;
   color: #2a3335;
   margin-bottom: 8px;
 }
@@ -143,7 +144,6 @@ body {
   border: none;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -167,7 +167,6 @@ select {
   border: 2px solid #009688;
   background-color: white;
   color: #2a3335;
-  font-size: 16px;
   cursor: pointer;
   outline: none;
 }
@@ -234,13 +233,11 @@ input[type="color"]::-webkit-color-swatch {
 
 /* Labels */
 label {
-  font-size: 16px;
   color: #2a3335;
-  min-width: 100px;
+  min-width: 140px;
 }
 
 span[id$="-value"] {
-  font-size: 16px;
   color: #009688;
   font-weight: 600;
   min-width: 50px; /* Adjust width to fit content */
