@@ -1,6 +1,6 @@
 # 3D Graphics Rendering Engine 🎮
 
-
+![alt text](image.png)
 This project implements a WebGL-based 3D graphics rendering engine with support for multiple geometric shapes, dynamic lighting, material properties, and camera controls. ✨
 
 ## 🚀 Try It Yourself
