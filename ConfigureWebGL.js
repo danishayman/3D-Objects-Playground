@@ -3,6 +3,7 @@ function configWebGL() {
   // Initialize the WebGL context
   gl = WebGLUtils.setupWebGL(canvas);
 
+  // Check if WebGL is available
   if (!gl) {
     alert("WebGL isn't available");
   }
