@@ -120,8 +120,7 @@ project-root/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/danishayman/CPC354-Asg2.git
-   ```
+   git clone https://github.com/danishayman/3D-Objects-Playground.git
 
 2. Set up a local web server. You can use Python's built-in server:
    ```bash
