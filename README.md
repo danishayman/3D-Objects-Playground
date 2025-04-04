@@ -118,27 +118,89 @@ project-root/
 
 ## 🚀 Setup and Usage
 
-1. Clone the repository:
+### Prerequisites
+- A modern web browser with WebGL support (Chrome, Firefox, Safari, or Edge)
+- Git (optional, for cloning the repository)
+- A local web server (several options provided below)
+
+### Installation
+
+1. **Get the code**
+   
+   Option A: Clone the repository:
    ```bash
    git clone https://github.com/danishayman/3D-Objects-Playground.git
-
-2. Set up a local web server. You can use Python's built-in server:
-   ```bash
-   python -m http.server
+   cd 3D-Objects-Playground
    ```
-   Or any other local development server.
+   
+   Option B: Download the ZIP file from GitHub and extract it.
 
-3. Open the application in a WebGL-compatible browser:
+2. **Set up a local web server**
+
+   Choose one of these options:
+   
+   - **Python** (if you have Python installed):
+     ```bash
+     # Python 3
+     python -m http.server
+     
+     # Python 2
+     python -m SimpleHTTPServer
+     ```
+   
+   - **Node.js** (if you have Node.js installed):
+     ```bash
+     # Install http-server globally (one-time setup)
+     npm install -g http-server
+     
+     # Run the server
+     http-server
+     ```
+   
+   - **VS Code**: Use the "Live Server" extension
+   
+   - **Any other web server** of your choice
+
+3. **Open the application**
+   
+   Visit the local server in your browser:
    ```
    http://localhost:8000
    ```
+   (The port may differ depending on your server configuration)
 
-4. Use the control panel on the right to:
-   - Toggle object animations
-   - Adjust lighting parameters
-   - Modify material properties
-   - Control camera position
-   - Change shading modes
+### Using the Application
+
+1. **Interactive Controls**:
+   - Use the control panel on the right side to interact with the scene
+   - Toggle animations for different objects
+   - Select rotation axes (X, Y, Z) for each object
+   
+2. **Lighting Controls**:
+   - Modify light source properties (type, position, color)
+   - Adjust ambient, diffuse, and specular components
+   - Configure spotlight parameters (when using spotlight mode)
+   
+3. **Material Properties**:
+   - Change material settings for each object
+   - Adjust shininess and reflection coefficients
+   - Experiment with different material colors
+   
+4. **Camera Navigation**:
+   - Adjust the camera position and orientation
+   - Change the look-at point and up vector
+   - Use the reset option to return to the default view
+   
+5. **Shading Options**:
+   - Switch between smooth and flat shading
+   - Experiment with different visual styles
+
+### Troubleshooting
+
+- If you see a blank screen, ensure your browser supports WebGL
+- Check browser console for any JavaScript errors
+- Try using Chrome or Firefox for best compatibility
+- If textures don't load, verify your web server is running correctly
 
 ## 🌐 Browser Compatibility
 
