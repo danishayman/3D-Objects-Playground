@@ -55,7 +55,7 @@ body {
 
 /* Control panel layout */
 .panel {
-  width: 420px;
+  width: 100%;
   max-width: 100%;
   height: auto;
   max-height: 90vh;
@@ -252,30 +252,52 @@ span[id$="-value"] {
   gap: 10px; /* Ensure proper spacing */
 }
 
+/* Bootstrap Accordion Customization */
+.accordion-button {
+  background-color: #f8f9fa;
+  color: #2a3335;
+  font-weight: 600;
+  padding: 15px 20px;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #e0f2f1;
+  color: #009688;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(0, 150, 136, 0.25);
+}
+
+.accordion-body {
+  padding: 15px;
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 1200px) {
   body {
     flex-direction: column;
     align-items: center;
+    padding: 10px;
   }
 
   .canvas {
     width: 100%;
-    max-width: 800px;
+    max-width: 100%;
+    margin-top: 20px;
   }
 
   .panel {
     width: 100%;
-    max-width: 800px;
+    max-width: 100%;
     margin-top: 20px;
     margin-left: 0;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   body {
-    padding: 10px;
+    padding: 5px;
   }
 
   .horizontal-align {
@@ -290,6 +312,7 @@ span[id$="-value"] {
 
   label {
     min-width: auto;
+    margin-bottom: 5px;
   }
 
   span[id$="-value"] {
@@ -304,5 +327,57 @@ span[id$="-value"] {
   .direction-control {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .checkRadio {
+    width: 24px;
+    height: 24px;
+  }
+
+  .anim-btn {
+    padding: 15px 20px;
+    font-size: 18px;
+  }
+
+  .accordion-button {
+    padding: 12px 15px;
+    font-size: 18px;
+  }
+
+  .panel {
+    font-size: 16px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+
+  input[type="color"] {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .canvas {
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+
+  .param-panel {
+    padding: 8px;
+  }
+
+  .checkText {
+    font-size: 16px;
+  }
+
+  .accordion-button {
+    font-size: 16px;
   }
 }

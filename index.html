@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3D Objects Playground</title>
 
     <!-- Link CSS, JS, and WebGL -->
@@ -25,9 +26,14 @@
     <script type="text/javascript" src="Shading.js"></script>
     <script type="text/javascript" src="ConfigureWebGL.js"></script>
 
-
     <link rel="icon" type="image/png" href="images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
 
     <!-- Define the vertex shader -->
     <script id="vertex-shader" type="x-shader/x-vertex">
@@ -115,508 +121,703 @@
   </head>
 
   <body>
-    <!-- Canvas for the graphic rendering -->
-    <div class="canvas">
-      <canvas id="gl-canvas" width="1280" height="720">
-        Error: your browser doesn't support the HTML5 canvas element
-      </canvas>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Canvas for the graphic rendering -->
+        <div class="col-lg-8 col-md-12 mb-4">
+          <div class="canvas">
+            <canvas id="gl-canvas" width="1280" height="720">
+              Error: your browser doesn't support the HTML5 canvas element
+            </canvas>
+          </div>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="col-lg-4 col-md-12">
+          <div class="panel vertical-align">
+            <!-- Object Controls -->
+            <div class="accordion" id="objectControls">
+              <!-- Cylinder Controls -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="cylinderHeading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cylinderCollapse"
+                    aria-expanded="false"
+                    aria-controls="cylinderCollapse"
+                  >
+                    Cylinder Controls
+                  </button>
+                </h2>
+                <div
+                  id="cylinderCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="cylinderHeading"
+                  data-bs-parent="#objectControls"
+                >
+                  <div class="accordion-body">
+                    <!-- Radio buttons for cylinder animation -->
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate X-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="cylinder-x"
+                        type="radio"
+                        name="checkCylinder"
+                        checked
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate Y-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="cylinder-y"
+                        type="radio"
+                        name="checkCylinder"
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate Z-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="cylinder-z"
+                        type="radio"
+                        name="checkCylinder"
+                      />
+                    </div>
+
+                    <!-- Cylinder animation button -->
+                    <input
+                      id="cylinder-btn"
+                      class="anim-btn"
+                      type="button"
+                      value="Toggle Cylinder"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Teapot Controls -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="teapotHeading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#teapotCollapse"
+                    aria-expanded="false"
+                    aria-controls="teapotCollapse"
+                  >
+                    Teapot Controls
+                  </button>
+                </h2>
+                <div
+                  id="teapotCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="teapotHeading"
+                  data-bs-parent="#objectControls"
+                >
+                  <div class="accordion-body">
+                    <!-- Radio buttons for teapot animation -->
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate X-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="teapot-x"
+                        type="radio"
+                        name="checkTeapot"
+                        checked
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate Y-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="teapot-y"
+                        type="radio"
+                        name="checkTeapot"
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate Z-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="teapot-z"
+                        type="radio"
+                        name="checkTeapot"
+                      />
+                    </div>
+
+                    <!-- Teapot animation button -->
+                    <input
+                      id="teapot-btn"
+                      class="anim-btn"
+                      type="button"
+                      value="Toggle Teapot"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cube Controls -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="cubeHeading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cubeCollapse"
+                    aria-expanded="false"
+                    aria-controls="cubeCollapse"
+                  >
+                    Cube Controls
+                  </button>
+                </h2>
+                <div
+                  id="cubeCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="cubeHeading"
+                  data-bs-parent="#objectControls"
+                >
+                  <div class="accordion-body">
+                    <!-- Radio buttons for cube animation -->
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate X-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="cube-x"
+                        type="radio"
+                        name="checkCube"
+                        checked
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate Y-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="cube-y"
+                        type="radio"
+                        name="checkCube"
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate Z-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="cube-z"
+                        type="radio"
+                        name="checkCube"
+                      />
+                    </div>
+
+                    <!-- Cube animation button -->
+                    <input
+                      id="cube-btn"
+                      class="anim-btn"
+                      type="button"
+                      value="Toggle Cube"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sphere Controls -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="sphereHeading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#sphereCollapse"
+                    aria-expanded="false"
+                    aria-controls="sphereCollapse"
+                  >
+                    Sphere Controls
+                  </button>
+                </h2>
+                <div
+                  id="sphereCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="sphereHeading"
+                  data-bs-parent="#objectControls"
+                >
+                  <div class="accordion-body">
+                    <!-- Radio buttons for sphere animation -->
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate X-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="sphere-x"
+                        type="radio"
+                        name="checkSphere"
+                        checked
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate Y-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="sphere-y"
+                        type="radio"
+                        name="checkSphere"
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Rotate Z-Axis</div>
+                      <input
+                        class="checkRadio"
+                        id="sphere-z"
+                        type="radio"
+                        name="checkSphere"
+                      />
+                    </div>
+
+                    <!-- Sphere animation button -->
+                    <input
+                      id="sphere-btn"
+                      class="anim-btn"
+                      type="button"
+                      value="Toggle Sphere"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lighting Controls -->
+            <div class="accordion mt-3" id="lightingControls">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="lightingHeading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#lightingCollapse"
+                    aria-expanded="false"
+                    aria-controls="lightingCollapse"
+                  >
+                    Lighting Controls
+                  </button>
+                </h2>
+                <div
+                  id="lightingCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="lightingHeading"
+                  data-bs-parent="#lightingControls"
+                >
+                  <div class="accordion-body">
+                    <!-- Light Type -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Light Type</div>
+                      <div class="horizontal-align">
+                        <label>Directional</label>
+                        <input
+                          class="checkRadio"
+                          id="directional-light"
+                          type="radio"
+                          name="light-type"
+                          checked
+                        />
+                      </div>
+                      <div class="horizontal-align">
+                        <label>Point</label>
+                        <input
+                          class="checkRadio"
+                          id="point-light"
+                          type="radio"
+                          name="light-type"
+                        />
+                      </div>
+                      <div class="horizontal-align">
+                        <label>Spotlight</label>
+                        <input
+                          class="checkRadio"
+                          id="spotlight"
+                          type="radio"
+                          name="light-type"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Light Position -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Light Position</div>
+                      <div class="slider-control horizontal-align">
+                        <label>X:</label>
+                        <input
+                          type="range"
+                          id="light-x"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="light-x-value">0.0</span>
+                      </div>
+                      <div class="slider-control horizontal-align">
+                        <label>Y:</label>
+                        <input
+                          type="range"
+                          id="light-y"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="light-y-value">0.0</span>
+                      </div>
+                      <div class="slider-control horizontal-align">
+                        <label>Z:</label>
+                        <input
+                          type="range"
+                          id="light-z"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="light-z-value">0.0</span>
+                      </div>
+                    </div>
+
+                    <!-- Spotlight Direction -->
+                    <div
+                      class="param-panel vertical-align mg-top-bottom"
+                      id="spotlight-controls"
+                    >
+                      <div class="checkText">Spotlight Direction</div>
+                      <div class="direction-control horizontal-align">
+                        <label>X:</label>
+                        <input
+                          type="range"
+                          id="spotlight-x"
+                          min="-1"
+                          max="1"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="spotlight-x-value">0.0</span>
+                      </div>
+                      <div class="direction-control horizontal-align">
+                        <label>Y:</label>
+                        <input
+                          type="range"
+                          id="spotlight-y"
+                          min="-1"
+                          max="1"
+                          step="0.1"
+                          value="-1"
+                        />
+                        <span id="spotlight-y-value">-1.0</span>
+                      </div>
+                      <div class="direction-control horizontal-align">
+                        <label>Z:</label>
+                        <input
+                          type="range"
+                          id="spotlight-z"
+                          min="-1"
+                          max="1"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="spotlight-z-value">0.0</span>
+                      </div>
+                    </div>
+
+                    <!-- Spotlight Cutoff -->
+                    <div
+                      class="param-panel vertical-align mg-top-bottom"
+                      id="spotlight-cutoff-control"
+                    >
+                      <div class="checkText">Spotlight Cutoff</div>
+                      <div class="slider-control horizontal-align">
+                        <label>Angle:</label>
+                        <input
+                          type="range"
+                          id="spotlight-cutoff"
+                          min="0"
+                          max="90"
+                          step="1"
+                          value="20"
+                        />
+                        <span id="spotlight-cutoff-value">20°</span>
+                      </div>
+                    </div>
+
+                    <!-- Light Color -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Light Color</div>
+                      <div class="color-control horizontal-align">
+                        <label>Color:</label>
+                        <input type="color" id="light-color" value="#ffffff" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Material Controls -->
+            <div class="accordion mt-3" id="materialControls">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="materialHeading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#materialCollapse"
+                    aria-expanded="false"
+                    aria-controls="materialCollapse"
+                  >
+                    Material Controls
+                  </button>
+                </h2>
+                <div
+                  id="materialCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="materialHeading"
+                  data-bs-parent="#materialControls"
+                >
+                  <div class="accordion-body">
+                    <!-- Material Type -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Material Type</div>
+                      <div class="horizontal-align">
+                        <label>Plastic</label>
+                        <input
+                          class="checkRadio"
+                          id="plastic-material"
+                          type="radio"
+                          name="material-type"
+                          checked
+                        />
+                      </div>
+                      <div class="horizontal-align">
+                        <label>Metal</label>
+                        <input
+                          class="checkRadio"
+                          id="metal-material"
+                          type="radio"
+                          name="material-type"
+                        />
+                      </div>
+                      <div class="horizontal-align">
+                        <label>Wood</label>
+                        <input
+                          class="checkRadio"
+                          id="wood-material"
+                          type="radio"
+                          name="material-type"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Material Color -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Material Color</div>
+                      <div class="color-control horizontal-align">
+                        <label>Color:</label>
+                        <input
+                          type="color"
+                          id="material-color"
+                          value="#ff0000"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- Shininess -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Shininess</div>
+                      <div class="slider-control horizontal-align">
+                        <label>Value:</label>
+                        <input
+                          type="range"
+                          id="shininess"
+                          min="1"
+                          max="100"
+                          step="1"
+                          value="30"
+                        />
+                        <span id="shininess-value">30</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Camera Controls -->
+            <div class="accordion mt-3" id="cameraControls">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="cameraHeading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cameraCollapse"
+                    aria-expanded="false"
+                    aria-controls="cameraCollapse"
+                  >
+                    Camera Controls
+                  </button>
+                </h2>
+                <div
+                  id="cameraCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="cameraHeading"
+                  data-bs-parent="#cameraControls"
+                >
+                  <div class="accordion-body">
+                    <!-- Camera Position -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Camera Position</div>
+                      <div class="slider-control horizontal-align">
+                        <label>X:</label>
+                        <input
+                          type="range"
+                          id="camera-x"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="camera-x-value">0.0</span>
+                      </div>
+                      <div class="slider-control horizontal-align">
+                        <label>Y:</label>
+                        <input
+                          type="range"
+                          id="camera-y"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="camera-y-value">0.0</span>
+                      </div>
+                      <div class="slider-control horizontal-align">
+                        <label>Z:</label>
+                        <input
+                          type="range"
+                          id="camera-z"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="5"
+                        />
+                        <span id="camera-z-value">5.0</span>
+                      </div>
+                    </div>
+
+                    <!-- Look At Point -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Look At Point</div>
+                      <div class="slider-control horizontal-align">
+                        <label>X:</label>
+                        <input
+                          type="range"
+                          id="look-at-x"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="look-at-x-value">0.0</span>
+                      </div>
+                      <div class="slider-control horizontal-align">
+                        <label>Y:</label>
+                        <input
+                          type="range"
+                          id="look-at-y"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="look-at-y-value">0.0</span>
+                      </div>
+                      <div class="slider-control horizontal-align">
+                        <label>Z:</label>
+                        <input
+                          type="range"
+                          id="look-at-z"
+                          min="-10"
+                          max="10"
+                          step="0.1"
+                          value="0"
+                        />
+                        <span id="look-at-z-value">0.0</span>
+                      </div>
+                    </div>
+
+                    <!-- Reset Camera Button -->
+                    <div class="slider-control horizontal-align">
+                      <input
+                        type="button"
+                        id="reset-camera"
+                        value="Reset Camera"
+                        class="anim-btn"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Shading Controls -->
+            <div class="accordion mt-3" id="shadingControls">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="shadingHeading">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#shadingCollapse"
+                    aria-expanded="false"
+                    aria-controls="shadingCollapse"
+                  >
+                    Shading Controls
+                  </button>
+                </h2>
+                <div
+                  id="shadingCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="shadingHeading"
+                  data-bs-parent="#shadingControls"
+                >
+                  <div class="accordion-body">
+                    <!-- Shading Type -->
+                    <div class="shading-type horizontal-align">
+                      <label>Shading Mode:</label>
+                      <select id="shading-mode" class="form-select">
+                        <option value="smooth">Smooth</option>
+                        <option value="flat">Flat</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- ======================================== CYLINDER CONTROL ======================================== -->
-    <!-- Panel for parameter customization -->
-    <div class="panel vertical-align">
-      <!-- Radio buttons for cylinder animation -->
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate X-Axis</div>
-        <input
-          class="checkRadio"
-          id="cylinder-x"
-          type="radio"
-          name="checkCylinder"
-          checked
-        />
-      </div>
-
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate Y-Axis</div>
-        <input
-          class="checkRadio"
-          id="cylinder-y"
-          type="radio"
-          name="checkCylinder"
-        />
-      </div>
-
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate Z-Axis</div>
-        <input
-          class="checkRadio"
-          id="cylinder-z"
-          type="radio"
-          name="checkCylinder"
-        />
-      </div>
-
-      <!-- Cylinder animation button -->
-      <input
-        id="cylinder-btn"
-        class="anim-btn"
-        type="button"
-        value="Toggle Cylinder"
-      />
-
-      <!-- ======================================== TEAPOT CONTROL ======================================== -->
-      <!-- Radio buttons for teapot animation -->
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate X-Axis</div>
-        <input
-          class="checkRadio"
-          id="teapot-x"
-          type="radio"
-          name="checkTeapot"
-          checked
-        />
-      </div>
-
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate Y-Axis</div>
-        <input
-          class="checkRadio"
-          id="teapot-y"
-          type="radio"
-          name="checkTeapot"
-        />
-      </div>
-
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate Z-Axis</div>
-        <input
-          class="checkRadio"
-          id="teapot-z"
-          type="radio"
-          name="checkTeapot"
-        />
-      </div>
-
-      <!-- Teapot animation button -->
-      <input
-        id="teapot-btn"
-        class="anim-btn"
-        type="button"
-        value="Toggle Teapot"
-      />
-
-      <!-- ======================================== CUBE CONTROL ======================================== -->
-      <!-- Radio buttons for cube animation -->
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate X-Axis</div>
-        <input
-          class="checkRadio"
-          id="cube-x"
-          type="radio"
-          name="checkCube"
-          checked
-        />
-      </div>
-
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate Y-Axis</div>
-        <input class="checkRadio" id="cube-y" type="radio" name="checkCube" />
-      </div>
-
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Rotate Z-Axis</div>
-        <input class="checkRadio" id="cube-z" type="radio" name="checkCube" />
-      </div>
-
-      <!-- Cube animation button -->
-      <input id="cube-btn" class="anim-btn" type="button" value="Toggle Cube" />
-
-      <!-- ======================================== LIGHT SOURCE SELECTION ======================================== -->
-
-      <!-- Light Source Toggle -->
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Light Source</div>
-        <input type="checkbox" id="light-toggle" class="checkRadio" checked />
-      </div>
-
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Light Source:</div>
-        <select id="light-source" class="light-select">
-          <option value="point">Point Light</option>
-          <option value="spot">Spot Light</option>
-        </select>
-      </div>
-
-      <!-- ======================================== SPOTLIGHT CONTROLS ======================================== -->
-
-      <div class="param-panel vertical-align mg-top-bottom">
-        <div class="checkText">Spotlight Settings</div>
-
-        <!-- Cutoff Angle -->
-        <div class="spotlight-control horizontal-align">
-          <label>Cutoff Angle:</label>
-          <input
-            type="range"
-            id="spotlight-cutoff"
-            min="0"
-            max="45"
-            value="45"
-            step="1"
-          />
-          <span id="spotlight-cutoff-value">45°</span>
-        </div>
-
-        <!-- Spotlight Direction -->
-        <div class="spotlight-direction vertical-align">
-          <div class="checkText">Direction</div>
-
-          <!-- Direction X -->
-          <div class="direction-control horizontal-align">
-            <label>X:</label>
-            <input
-              type="range"
-              id="spotlight-dir-x"
-              min="-1"
-              max="1"
-              value="-0.1"
-              step="0.1"
-            />
-            <span id="spotlight-dir-x-value">0.0</span>
-          </div>
-
-          <!-- Direction Y -->
-          <div class="direction-control horizontal-align">
-            <label>Y:</label>
-            <input
-              type="range"
-              id="spotlight-dir-y"
-              min="-1"
-              max="1"
-              value="-0.1"
-              step="0.1"
-            />
-            <span id="spotlight-dir-y-value">-1.0</span>
-          </div>
-
-          <!-- Direction Z -->
-          <div class="direction-control horizontal-align">
-            <label>Z:</label>
-            <input
-              type="range"
-              id="spotlight-dir-z"
-              min="-1"
-              max="1"
-              value="-0.6"
-              step="0.1"
-            />
-            <span id="spotlight-dir-z-value">0.0</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ======================================== LIGHT TYPE CONTROLS ======================================== -->
-      <div class="param-panel horizontal-align mg-top-bottom">
-        <div class="checkText">Light Type</div>
-        <select id="point-light-type" class="light-select">
-          <option value="positional">Positional</option>
-          <option value="directional">Directional</option>
-        </select>
-      </div>
-
-      <!-- ======================================== LIGHT COLOR CONTROLS ======================================== -->
-      <div class="param-panel vertical-align mg-top-bottom">
-        <div class="checkText">Light Colors</div>
-
-        <!-- Ambient Color -->
-        <div class="color-control horizontal-align">
-          <label>Ambient:</label>
-          <input type="color" id="ambient-color" value="#ffffff" />
-        </div>
-
-        <!-- Diffuse Color -->
-        <div class="color-control horizontal-align">
-          <label>Diffuse:</label>
-          <input type="color" id="diffuse-color" value="#ffffff" />
-        </div>
-
-        <!-- Specular Color -->
-        <div class="color-control horizontal-align">
-          <label>Specular:</label>
-          <input type="color" id="specular-color" value="#ffffff" />
-        </div>
-      </div>
-
-      <!-- ======================================== LIGHT POSITION CONTROLS ======================================== -->
-      <div class="param-panel vertical-align mg-top-bottom">
-        <div class="checkText">Light Position</div>
-
-        <!-- X Position -->
-        <div class="position-control horizontal-align">
-          <label>X Position:</label>
-          <input
-            type="range"
-            id="light-x"
-            min="-4.0"
-            max="4.0"
-            value="1"
-            step="0.1"
-          />
-          <span id="light-x-value">1.0</span>
-        </div>
-
-        <!-- Y Position -->
-        <div class="position-control horizontal-align">
-          <label>Y Position:</label>
-          <input
-            type="range"
-            id="light-y"
-            min="-2.1"
-            max="2.1"
-            value="1"
-            step="0.1"
-          />
-          <span id="light-y-value">1.0</span>
-        </div>
-
-        <!-- Z Position -->
-        <div class="position-control horizontal-align">
-          <label>Z Position:</label>
-          <input
-            type="range"
-            id="light-z"
-            min="-3.5"
-            max="3.5"
-            value="1"
-            step="0.1"
-          />
-          <span id="light-z-value">1.0</span>
-        </div>
-      </div>
-
-      <!-- ======================================== MATERIAL CONTROLS ======================================== -->
-      <!-- Material Controls -->
-      <div class="param-panel vertical-align mg-top-bottom">
-        <div class="checkText">Object Material Properties</div>
-
-        <!-- Object Selection -->
-        <select id="object-select" class="material-select">
-          <option value="cylinder">Cylinder</option>
-          <option value="teapot">Teapot</option>
-          <option value="cube">Cube</option>
-        </select>
-
-        <!-- Material Colors -->
-        <div class="material-colors vertical-align">
-          <div class="color-control horizontal-align">
-            <label>Material Ambient:</label>
-            <input type="color" id="material-ambient" value="#808080" />
-          </div>
-          <div class="color-control horizontal-align">
-            <label>Material Diffuse:</label>
-            <input type="color" id="material-diffuse" value="#808080" />
-          </div>
-          <div class="color-control horizontal-align">
-            <label>Material Specular:</label>
-            <input type="color" id="material-specular" value="#808080" />
-          </div>
-        </div>
-
-        <!-- Reflection Coefficients -->
-        <div class="reflection-controls vertical-align">
-          <div class="slider-control horizontal-align">
-            <label>Ambient Coefficient:</label>
-            <input
-              type="range"
-              id="ambient-coef"
-              min="0"
-              max="1"
-              step="0.1"
-              value="0.2"
-            />
-            <span id="ambient-coef-value">0.2</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <label>Diffuse Coefficient:</label>
-            <input
-              type="range"
-              id="diffuse-coef"
-              min="0"
-              max="1"
-              step="0.1"
-              value="0.6"
-            />
-            <span id="diffuse-coef-value">0.6</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <label>Specular Coefficient:</label>
-            <input
-              type="range"
-              id="specular-coef"
-              min="0"
-              max="1"
-              step="0.1"
-              value="0.3"
-            />
-            <span id="specular-coef-value">0.3</span>
-          </div>
-        </div>
-
-        <!-- Shininess Control -->
-        <div class="slider-control horizontal-align">
-          <label>Shininess:</label>
-          <input type="range" id="shininess" min="1" max="100" value="30" />
-          <span id="shininess-value">30</span>
-        </div>
-      </div>
-
-      <!-- ======================================== VIEWING & SHADING CONTROLS ======================================== -->
-      <!-- Camera Controls -->
-      <div class="param-panel vertical-align mg-top-bottom">
-        <div class="checkText">Camera Controls</div>
-
-        <!-- Camera Position -->
-        <div class="camera-position vertical-align">
-          <div class="slider-control horizontal-align">
-            <label>Eye X:</label>
-            <input
-              type="range"
-              id="eye-x"
-              min="-20"
-              max="20"
-              value="0"
-              step="0.1"
-            />
-            <span id="eye-x-value">0.0</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <label>Eye Y:</label>
-            <input
-              type="range"
-              id="eye-y"
-              min="-20"
-              max="20"
-              value="0"
-              step="0.1"
-            />
-            <span id="eye-y-value">0.0</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <label>Eye Z:</label>
-            <input
-              type="range"
-              id="eye-z"
-              min="1"
-              max="30"
-              value="5"
-              step="0.1"
-            />
-            <span id="eye-z-value">5.0</span>
-          </div>
-        </div>
-
-        <!-- Center  -->
-        <div class="look-at vertical-align">
-          <div class="slider-control horizontal-align">
-            <label>Look-At X:</label>
-            <input
-              type="range"
-              id="at-x"
-              min="-10"
-              max="10"
-              value="0"
-              step="0.1"
-            />
-            <span id="at-x-value">0.0</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <label>Look-At Y:</label>
-            <input
-              type="range"
-              id="at-y"
-              min="-10"
-              max="10"
-              value="0"
-              step="0.1"
-            />
-            <span id="at-y-value">0.0</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <label>Look-At Z:</label>
-            <input
-              type="range"
-              id="at-z"
-              min="-10"
-              max="10"
-              value="0"
-              step="0.1"
-            />
-            <span id="at-z-value">0.0</span>
-          </div>
-        </div>
-
-        <!-- Up Vector (unchanged since it's normalized) -->
-        <div class="up-vector vertical-align">
-          <div class="slider-control horizontal-align">
-            <label>Up X:</label>
-            <input
-              type="range"
-              id="up-x"
-              min="-1"
-              max="1"
-              value="0"
-              step="0.1"
-            />
-            <span id="up-x-value">0.0</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <label>Up Y:</label>
-            <input
-              type="range"
-              id="up-y"
-              min="-1"
-              max="1"
-              value="1"
-              step="0.1"
-            />
-            <span id="up-y-value">1.0</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <label>Up Z:</label>
-            <input
-              type="range"
-              id="up-z"
-              min="-1"
-              max="1"
-              value="0"
-              step="0.1"
-            />
-            <span id="up-z-value">0.0</span>
-          </div>
-          <div class="slider-control horizontal-align">
-            <input
-                type="button"
-                id="reset-camera"
-                value="Reset Camera"
-                class="anim-btn"
-            />
-        </div>
-        </div>
-      </div>
-
-      <!-- Shading Controls -->
-      <div class="param-panel vertical-align mg-top-bottom">
-        <div class="checkText">Shading Controls</div>
-
-        <!-- Shading Type -->
-        <div class="shading-type horizontal-align">
-          <label>Shading Mode:</label>
-          <select id="shading-mode">
-            <option value="smooth">Smooth</option>
-            <option value="flat">Flat</option>
-          </select>
-        </div>
-      </div>
-    </div>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
