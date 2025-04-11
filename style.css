@@ -103,14 +103,14 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 15px;
-  margin: 8px 0;
+  /* gap: 10px;
+  margin: 5px 0; */
 }
 
 .vertical-align {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 5px;
 }
 
 /* Control section styling */
@@ -254,6 +254,9 @@ span[id$="-value"] {
 }
 
 /* Bootstrap Accordion Customization */
+.accordion {
+  width: 400px;
+}
 .accordion-button {
   background-color: #f8f9fa;
   color: #2a3335;
