@@ -305,9 +305,10 @@ span[id$="-value"] {
   }
 
   .horizontal-align {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
+    flex-direction: row;
+    /* align-items: stretch; */
+    align-items: center;
+    gap: 10px;
   }
 
   .param-panel {
