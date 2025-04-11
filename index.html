@@ -135,9 +135,9 @@
         <!-- Control Panel -->
         <div class="col-lg-4 col-md-12">
           <div class="panel vertical-align">
-            <!-- Object Controls -->
+            <!-- ======================================== OBJECT CONTROLS ======================================== -->
             <div class="accordion" id="objectControls">
-              <!-- Cylinder Controls -->
+              <!-- ======================================== CYLINDER CONTROL ======================================== -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="cylinderHeading">
                   <button
@@ -201,7 +201,7 @@
                 </div>
               </div>
 
-              <!-- Teapot Controls -->
+              <!-- ======================================== TEAPOT CONTROL ======================================== -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="teapotHeading">
                   <button
@@ -265,7 +265,7 @@
                 </div>
               </div>
 
-              <!-- Cube Controls -->
+              <!-- ======================================== CUBE CONTROL ======================================== -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="cubeHeading">
                   <button
@@ -329,7 +329,7 @@
                 </div>
               </div>
 
-              <!-- Sphere Controls -->
+              <!-- ======================================== SPHERE CONTROL ======================================== -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="sphereHeading">
                   <button
@@ -394,7 +394,7 @@
               </div>
             </div>
 
-            <!-- Lighting Controls -->
+            <!-- ======================================== LIGHTING CONTROLS ======================================== -->
             <div class="accordion mt-3" id="lightingControls">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="lightingHeading">
@@ -416,150 +416,179 @@
                   data-bs-parent="#lightingControls"
                 >
                   <div class="accordion-body">
-                    <!-- Light Type -->
+                    <!-- Light Source Toggle -->
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Light Source</div>
+                      <input
+                        type="checkbox"
+                        id="light-toggle"
+                        class="checkRadio"
+                        checked
+                      />
+                    </div>
+
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Light Source:</div>
+                      <select id="light-source" class="light-select">
+                        <option value="point">Point Light</option>
+                        <option value="spot">Spot Light</option>
+                      </select>
+                    </div>
+
+                    <!-- ======================================== SPOTLIGHT CONTROLS ======================================== -->
                     <div class="param-panel vertical-align mg-top-bottom">
-                      <div class="checkText">Light Type</div>
-                      <div class="horizontal-align">
-                        <label>Directional</label>
-                        <input
-                          class="checkRadio"
-                          id="directional-light"
-                          type="radio"
-                          name="light-type"
-                          checked
-                        />
-                      </div>
-                      <div class="horizontal-align">
-                        <label>Point</label>
-                        <input
-                          class="checkRadio"
-                          id="point-light"
-                          type="radio"
-                          name="light-type"
-                        />
-                      </div>
-                      <div class="horizontal-align">
-                        <label>Spotlight</label>
-                        <input
-                          class="checkRadio"
-                          id="spotlight"
-                          type="radio"
-                          name="light-type"
-                        />
-                      </div>
-                    </div>
+                      <div class="checkText">Spotlight Settings</div>
 
-                    <!-- Light Position -->
-                    <div class="param-panel vertical-align mg-top-bottom">
-                      <div class="checkText">Light Position</div>
-                      <div class="slider-control horizontal-align">
-                        <label>X:</label>
-                        <input
-                          type="range"
-                          id="light-x"
-                          min="-10"
-                          max="10"
-                          step="0.1"
-                          value="0"
-                        />
-                        <span id="light-x-value">0.0</span>
-                      </div>
-                      <div class="slider-control horizontal-align">
-                        <label>Y:</label>
-                        <input
-                          type="range"
-                          id="light-y"
-                          min="-10"
-                          max="10"
-                          step="0.1"
-                          value="0"
-                        />
-                        <span id="light-y-value">0.0</span>
-                      </div>
-                      <div class="slider-control horizontal-align">
-                        <label>Z:</label>
-                        <input
-                          type="range"
-                          id="light-z"
-                          min="-10"
-                          max="10"
-                          step="0.1"
-                          value="0"
-                        />
-                        <span id="light-z-value">0.0</span>
-                      </div>
-                    </div>
-
-                    <!-- Spotlight Direction -->
-                    <div
-                      class="param-panel vertical-align mg-top-bottom"
-                      id="spotlight-controls"
-                    >
-                      <div class="checkText">Spotlight Direction</div>
-                      <div class="direction-control horizontal-align">
-                        <label>X:</label>
-                        <input
-                          type="range"
-                          id="spotlight-x"
-                          min="-1"
-                          max="1"
-                          step="0.1"
-                          value="0"
-                        />
-                        <span id="spotlight-x-value">0.0</span>
-                      </div>
-                      <div class="direction-control horizontal-align">
-                        <label>Y:</label>
-                        <input
-                          type="range"
-                          id="spotlight-y"
-                          min="-1"
-                          max="1"
-                          step="0.1"
-                          value="-1"
-                        />
-                        <span id="spotlight-y-value">-1.0</span>
-                      </div>
-                      <div class="direction-control horizontal-align">
-                        <label>Z:</label>
-                        <input
-                          type="range"
-                          id="spotlight-z"
-                          min="-1"
-                          max="1"
-                          step="0.1"
-                          value="0"
-                        />
-                        <span id="spotlight-z-value">0.0</span>
-                      </div>
-                    </div>
-
-                    <!-- Spotlight Cutoff -->
-                    <div
-                      class="param-panel vertical-align mg-top-bottom"
-                      id="spotlight-cutoff-control"
-                    >
-                      <div class="checkText">Spotlight Cutoff</div>
-                      <div class="slider-control horizontal-align">
-                        <label>Angle:</label>
+                      <!-- Cutoff Angle -->
+                      <div class="spotlight-control horizontal-align">
+                        <label>Cutoff Angle:</label>
                         <input
                           type="range"
                           id="spotlight-cutoff"
                           min="0"
-                          max="90"
+                          max="45"
+                          value="45"
                           step="1"
-                          value="20"
                         />
-                        <span id="spotlight-cutoff-value">20°</span>
+                        <span id="spotlight-cutoff-value">45°</span>
+                      </div>
+
+                      <!-- Spotlight Direction -->
+                      <div class="spotlight-direction vertical-align">
+                        <div class="checkText">Direction</div>
+
+                        <!-- Direction X -->
+                        <div class="direction-control horizontal-align">
+                          <label>X:</label>
+                          <input
+                            type="range"
+                            id="spotlight-dir-x"
+                            min="-1"
+                            max="1"
+                            value="-0.1"
+                            step="0.1"
+                          />
+                          <span id="spotlight-dir-x-value">0.0</span>
+                        </div>
+
+                        <!-- Direction Y -->
+                        <div class="direction-control horizontal-align">
+                          <label>Y:</label>
+                          <input
+                            type="range"
+                            id="spotlight-dir-y"
+                            min="-1"
+                            max="1"
+                            value="-0.1"
+                            step="0.1"
+                          />
+                          <span id="spotlight-dir-y-value">-1.0</span>
+                        </div>
+
+                        <!-- Direction Z -->
+                        <div class="direction-control horizontal-align">
+                          <label>Z:</label>
+                          <input
+                            type="range"
+                            id="spotlight-dir-z"
+                            min="-1"
+                            max="1"
+                            value="-0.6"
+                            step="0.1"
+                          />
+                          <span id="spotlight-dir-z-value">0.0</span>
+                        </div>
                       </div>
                     </div>
 
-                    <!-- Light Color -->
+                    <!-- ======================================== LIGHT TYPE CONTROLS ======================================== -->
+                    <div class="param-panel horizontal-align mg-top-bottom">
+                      <div class="checkText">Light Type</div>
+                      <select id="point-light-type" class="light-select">
+                        <option value="positional">Positional</option>
+                        <option value="directional">Directional</option>
+                      </select>
+                    </div>
+
+                    <!-- ======================================== LIGHT COLOR CONTROLS ======================================== -->
                     <div class="param-panel vertical-align mg-top-bottom">
-                      <div class="checkText">Light Color</div>
+                      <div class="checkText">Light Colors</div>
+
+                      <!-- Ambient Color -->
                       <div class="color-control horizontal-align">
-                        <label>Color:</label>
-                        <input type="color" id="light-color" value="#ffffff" />
+                        <label>Ambient:</label>
+                        <input
+                          type="color"
+                          id="ambient-color"
+                          value="#ffffff"
+                        />
+                      </div>
+
+                      <!-- Diffuse Color -->
+                      <div class="color-control horizontal-align">
+                        <label>Diffuse:</label>
+                        <input
+                          type="color"
+                          id="diffuse-color"
+                          value="#ffffff"
+                        />
+                      </div>
+
+                      <!-- Specular Color -->
+                      <div class="color-control horizontal-align">
+                        <label>Specular:</label>
+                        <input
+                          type="color"
+                          id="specular-color"
+                          value="#ffffff"
+                        />
+                      </div>
+                    </div>
+
+                    <!-- ======================================== LIGHT POSITION CONTROLS ======================================== -->
+                    <div class="param-panel vertical-align mg-top-bottom">
+                      <div class="checkText">Light Position</div>
+
+                      <!-- X Position -->
+                      <div class="position-control horizontal-align">
+                        <label>X Position:</label>
+                        <input
+                          type="range"
+                          id="light-x"
+                          min="-4.0"
+                          max="4.0"
+                          value="1"
+                          step="0.1"
+                        />
+                        <span id="light-x-value">1.0</span>
+                      </div>
+
+                      <!-- Y Position -->
+                      <div class="position-control horizontal-align">
+                        <label>Y Position:</label>
+                        <input
+                          type="range"
+                          id="light-y"
+                          min="-2.1"
+                          max="2.1"
+                          value="1"
+                          step="0.1"
+                        />
+                        <span id="light-y-value">1.0</span>
+                      </div>
+
+                      <!-- Z Position -->
+                      <div class="position-control horizontal-align">
+                        <label>Z Position:</label>
+                        <input
+                          type="range"
+                          id="light-z"
+                          min="-3.5"
+                          max="3.5"
+                          value="1"
+                          step="0.1"
+                        />
+                        <span id="light-z-value">1.0</span>
                       </div>
                     </div>
                   </div>
@@ -567,7 +596,7 @@
               </div>
             </div>
 
-            <!-- Material Controls -->
+            <!-- ======================================== MATERIAL CONTROLS ======================================== -->
             <div class="accordion mt-3" id="materialControls">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="materialHeading">
@@ -589,63 +618,93 @@
                   data-bs-parent="#materialControls"
                 >
                   <div class="accordion-body">
-                    <!-- Material Type -->
+                    <!-- Material Controls -->
                     <div class="param-panel vertical-align mg-top-bottom">
-                      <div class="checkText">Material Type</div>
-                      <div class="horizontal-align">
-                        <label>Plastic</label>
-                        <input
-                          class="checkRadio"
-                          id="plastic-material"
-                          type="radio"
-                          name="material-type"
-                          checked
-                        />
-                      </div>
-                      <div class="horizontal-align">
-                        <label>Metal</label>
-                        <input
-                          class="checkRadio"
-                          id="metal-material"
-                          type="radio"
-                          name="material-type"
-                        />
-                      </div>
-                      <div class="horizontal-align">
-                        <label>Wood</label>
-                        <input
-                          class="checkRadio"
-                          id="wood-material"
-                          type="radio"
-                          name="material-type"
-                        />
-                      </div>
-                    </div>
+                      <div class="checkText">Object Material Properties</div>
 
-                    <!-- Material Color -->
-                    <div class="param-panel vertical-align mg-top-bottom">
-                      <div class="checkText">Material Color</div>
-                      <div class="color-control horizontal-align">
-                        <label>Color:</label>
-                        <input
-                          type="color"
-                          id="material-color"
-                          value="#ff0000"
-                        />
-                      </div>
-                    </div>
+                      <!-- Object Selection -->
+                      <select id="object-select" class="material-select">
+                        <option value="cylinder">Cylinder</option>
+                        <option value="teapot">Teapot</option>
+                        <option value="cube">Cube</option>
+                      </select>
 
-                    <!-- Shininess -->
-                    <div class="param-panel vertical-align mg-top-bottom">
-                      <div class="checkText">Shininess</div>
+                      <!-- Material Colors -->
+                      <div class="material-colors vertical-align">
+                        <div class="color-control horizontal-align">
+                          <label>Material Ambient:</label>
+                          <input
+                            type="color"
+                            id="material-ambient"
+                            value="#808080"
+                          />
+                        </div>
+                        <div class="color-control horizontal-align">
+                          <label>Material Diffuse:</label>
+                          <input
+                            type="color"
+                            id="material-diffuse"
+                            value="#808080"
+                          />
+                        </div>
+                        <div class="color-control horizontal-align">
+                          <label>Material Specular:</label>
+                          <input
+                            type="color"
+                            id="material-specular"
+                            value="#808080"
+                          />
+                        </div>
+                      </div>
+
+                      <!-- Reflection Coefficients -->
+                      <div class="reflection-controls vertical-align">
+                        <div class="slider-control horizontal-align">
+                          <label>Ambient Coefficient:</label>
+                          <input
+                            type="range"
+                            id="ambient-coef"
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            value="0.2"
+                          />
+                          <span id="ambient-coef-value">0.2</span>
+                        </div>
+                        <div class="slider-control horizontal-align">
+                          <label>Diffuse Coefficient:</label>
+                          <input
+                            type="range"
+                            id="diffuse-coef"
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            value="0.6"
+                          />
+                          <span id="diffuse-coef-value">0.6</span>
+                        </div>
+                        <div class="slider-control horizontal-align">
+                          <label>Specular Coefficient:</label>
+                          <input
+                            type="range"
+                            id="specular-coef"
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            value="0.3"
+                          />
+                          <span id="specular-coef-value">0.3</span>
+                        </div>
+                      </div>
+
+                      <!-- Shininess Control -->
                       <div class="slider-control horizontal-align">
-                        <label>Value:</label>
+                        <label>Shininess:</label>
                         <input
                           type="range"
                           id="shininess"
                           min="1"
                           max="100"
-                          step="1"
                           value="30"
                         />
                         <span id="shininess-value">30</span>
@@ -656,6 +715,7 @@
               </div>
             </div>
 
+            <!-- ======================================== VIEWING & SHADING CONTROLS ======================================== -->
             <!-- Camera Controls -->
             <div class="accordion mt-3" id="cameraControls">
               <div class="accordion-item">
@@ -679,84 +739,122 @@
                 >
                   <div class="accordion-body">
                     <!-- Camera Position -->
-                    <div class="param-panel vertical-align mg-top-bottom">
-                      <div class="checkText">Camera Position</div>
+                    <div class="camera-position vertical-align">
                       <div class="slider-control horizontal-align">
-                        <label>X:</label>
+                        <label>Eye X:</label>
                         <input
                           type="range"
-                          id="camera-x"
-                          min="-10"
-                          max="10"
-                          step="0.1"
+                          id="eye-x"
+                          min="-20"
+                          max="20"
                           value="0"
+                          step="0.1"
                         />
-                        <span id="camera-x-value">0.0</span>
+                        <span id="eye-x-value">0.0</span>
                       </div>
                       <div class="slider-control horizontal-align">
-                        <label>Y:</label>
+                        <label>Eye Y:</label>
                         <input
                           type="range"
-                          id="camera-y"
-                          min="-10"
-                          max="10"
-                          step="0.1"
+                          id="eye-y"
+                          min="-20"
+                          max="20"
                           value="0"
+                          step="0.1"
                         />
-                        <span id="camera-y-value">0.0</span>
+                        <span id="eye-y-value">0.0</span>
                       </div>
                       <div class="slider-control horizontal-align">
-                        <label>Z:</label>
+                        <label>Eye Z:</label>
                         <input
                           type="range"
-                          id="camera-z"
-                          min="-10"
-                          max="10"
-                          step="0.1"
+                          id="eye-z"
+                          min="1"
+                          max="30"
                           value="5"
+                          step="0.1"
                         />
-                        <span id="camera-z-value">5.0</span>
+                        <span id="eye-z-value">5.0</span>
                       </div>
                     </div>
 
-                    <!-- Look At Point -->
-                    <div class="param-panel vertical-align mg-top-bottom">
-                      <div class="checkText">Look At Point</div>
+                    <!-- Center  -->
+                    <div class="look-at vertical-align">
                       <div class="slider-control horizontal-align">
-                        <label>X:</label>
+                        <label>Look-At X:</label>
                         <input
                           type="range"
-                          id="look-at-x"
+                          id="at-x"
                           min="-10"
                           max="10"
-                          step="0.1"
                           value="0"
+                          step="0.1"
                         />
-                        <span id="look-at-x-value">0.0</span>
+                        <span id="at-x-value">0.0</span>
                       </div>
                       <div class="slider-control horizontal-align">
-                        <label>Y:</label>
+                        <label>Look-At Y:</label>
                         <input
                           type="range"
-                          id="look-at-y"
+                          id="at-y"
                           min="-10"
                           max="10"
-                          step="0.1"
                           value="0"
+                          step="0.1"
                         />
-                        <span id="look-at-y-value">0.0</span>
+                        <span id="at-y-value">0.0</span>
                       </div>
                       <div class="slider-control horizontal-align">
-                        <label>Z:</label>
+                        <label>Look-At Z:</label>
                         <input
                           type="range"
-                          id="look-at-z"
+                          id="at-z"
                           min="-10"
                           max="10"
-                          step="0.1"
                           value="0"
+                          step="0.1"
                         />
-                        <span id="look-at-z-value">0.0</span>
+                        <span id="at-z-value">0.0</span>
+                      </div>
+                    </div>
+
+                    <!-- Up Vector (unchanged since it's normalized) -->
+                    <div class="up-vector vertical-align">
+                      <div class="slider-control horizontal-align">
+                        <label>Up X:</label>
+                        <input
+                          type="range"
+                          id="up-x"
+                          min="-1"
+                          max="1"
+                          value="0"
+                          step="0.1"
+                        />
+                        <span id="up-x-value">0.0</span>
+                      </div>
+                      <div class="slider-control horizontal-align">
+                        <label>Up Y:</label>
+                        <input
+                          type="range"
+                          id="up-y"
+                          min="-1"
+                          max="1"
+                          value="1"
+                          step="0.1"
+                        />
+                        <span id="up-y-value">1.0</span>
+                      </div>
+                      <div class="slider-control horizontal-align">
+                        <label>Up Z:</label>
+                        <input
+                          type="range"
+                          id="up-z"
+                          min="-1"
+                          max="1"
+                          value="0"
+                          step="0.1"
+                        />
+                        <span id="up-z-value">0.0</span>
                       </div>
                     </div>
 
