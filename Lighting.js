@@ -9,6 +9,9 @@ var lightAmbient = vec4(ambient, ambient, ambient, 1.0);
 var lightDiffuse = vec4(diffuse, diffuse, diffuse, 1.0);
 var lightSpecular = vec4(specular, specular, specular, 1.0);
 
+// Store original light values for restoration
+var originalLightAmbient, originalLightDiffuse, originalLightSpecular;
+
 var lightSourceSelect, lightToggle, lightTypeSelect;
 var ambientColorPicker, diffuseColorPicker, specularColorPicker;
 var lightXSlider, lightYSlider, lightZSlider;
@@ -25,6 +28,11 @@ function initLightControls() {
   ambientColorPicker = document.getElementById("ambient-color");
   diffuseColorPicker = document.getElementById("diffuse-color");
   specularColorPicker = document.getElementById("specular-color");
+
+  // Store original light values for restoration
+  originalLightAmbient = vec4(lightAmbient);
+  originalLightDiffuse = vec4(lightDiffuse);
+  originalLightSpecular = vec4(lightSpecular);
 
   // Position sliders and values
   lightXSlider = document.getElementById("light-x");
@@ -60,7 +68,6 @@ function initLightControls() {
   spotlightDirZ.addEventListener("input", updateSpotlightParams);
   updateLightType();
 }
-
 function updateLightSource() {
   const isSpotlight = lightSourceSelect.value === "spot";
 
@@ -98,12 +105,24 @@ function updateLightSource() {
 function toggleLight(event) {
   if (!event.target.checked) {
     // Store current values before turning off
+    originalLightAmbient = vec4(lightAmbient);
+    originalLightDiffuse = vec4(lightDiffuse);
+    originalLightSpecular = vec4(lightSpecular);
+
+    // Set lights to zero (off)
     lightAmbient = vec4(0.0, 0.0, 0.0, 1.0);
     lightDiffuse = vec4(0.0, 0.0, 0.0, 1.0);
     lightSpecular = vec4(0.0, 0.0, 0.0, 1.0);
   } else {
-    // Restore values from color pickers
-    updateLightColors();
+    // Restore original values instead of reading from color pickers
+    lightAmbient = vec4(originalLightAmbient);
+    lightDiffuse = vec4(originalLightDiffuse);
+    lightSpecular = vec4(originalLightSpecular);
+
+    // Update color pickers to match restored values
+    ambientColorPicker.value = rgbToHex(lightAmbient);
+    diffuseColorPicker.value = rgbToHex(lightDiffuse);
+    specularColorPicker.value = rgbToHex(lightSpecular);
   }
 
   // Update products
