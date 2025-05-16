@@ -105,6 +105,11 @@ function updateLightSource() {
 function toggleLight(event) {
   if (!event.target.checked) {
     // Store current values before turning off
+    originalLightAmbient = vec4(lightAmbient);
+    originalLightDiffuse = vec4(lightDiffuse);
+    originalLightSpecular = vec4(lightSpecular);
+
+    // Set lights to zero (off)
     lightAmbient = vec4(0.0, 0.0, 0.0, 1.0);
     lightDiffuse = vec4(0.0, 0.0, 0.0, 1.0);
     lightSpecular = vec4(0.0, 0.0, 0.0, 1.0);
