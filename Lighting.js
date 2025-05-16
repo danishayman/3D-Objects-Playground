@@ -114,8 +114,15 @@ function toggleLight(event) {
     lightDiffuse = vec4(0.0, 0.0, 0.0, 1.0);
     lightSpecular = vec4(0.0, 0.0, 0.0, 1.0);
   } else {
-    // Restore values from color pickers
-    updateLightColors();
+    // Restore original values instead of reading from color pickers
+    lightAmbient = vec4(originalLightAmbient);
+    lightDiffuse = vec4(originalLightDiffuse);
+    lightSpecular = vec4(originalLightSpecular);
+
+    // Update color pickers to match restored values
+    ambientColorPicker.value = rgbToHex(lightAmbient);
+    diffuseColorPicker.value = rgbToHex(lightDiffuse);
+    specularColorPicker.value = rgbToHex(lightSpecular);
   }
 
   // Update products
