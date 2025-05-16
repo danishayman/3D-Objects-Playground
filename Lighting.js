@@ -29,6 +29,11 @@ function initLightControls() {
   diffuseColorPicker = document.getElementById("diffuse-color");
   specularColorPicker = document.getElementById("specular-color");
 
+  // Store original light values for restoration
+  originalLightAmbient = vec4(lightAmbient);
+  originalLightDiffuse = vec4(lightDiffuse);
+  originalLightSpecular = vec4(lightSpecular);
+
   // Position sliders and values
   lightXSlider = document.getElementById("light-x");
   lightYSlider = document.getElementById("light-y");
@@ -63,7 +68,6 @@ function initLightControls() {
   spotlightDirZ.addEventListener("input", updateSpotlightParams);
   updateLightType();
 }
-
 function updateLightSource() {
   const isSpotlight = lightSourceSelect.value === "spot";
 
