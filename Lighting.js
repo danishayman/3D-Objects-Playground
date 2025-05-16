@@ -9,6 +9,9 @@ var lightAmbient = vec4(ambient, ambient, ambient, 1.0);
 var lightDiffuse = vec4(diffuse, diffuse, diffuse, 1.0);
 var lightSpecular = vec4(specular, specular, specular, 1.0);
 
+// Store original light values for restoration
+var originalLightAmbient, originalLightDiffuse, originalLightSpecular;
+
 var lightSourceSelect, lightToggle, lightTypeSelect;
 var ambientColorPicker, diffuseColorPicker, specularColorPicker;
 var lightXSlider, lightYSlider, lightZSlider;
